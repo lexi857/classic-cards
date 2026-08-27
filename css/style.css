@@ -182,21 +182,27 @@ h1 {
 }
 
 .game-option {
-    width: 100%;
+    position: relative;
 
-    display: grid;
-    grid-template-columns: 1fr 52px;
-    gap: 12px;
-    align-items: center;
+    width: 100%;
 }
 
 .game-button {
+    width: 100%;
     min-height: 58px;
+
+    padding-right: 64px;
 
     text-align: left;
 }
 
 .game-settings-button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    transform: translateY(-50%);
+
     width: 52px;
     min-height: 52px;
 
@@ -206,8 +212,35 @@ h1 {
     align-items: center;
     justify-content: center;
 
+    border: none;
+    border-radius: 0;
+
+    background: transparent;
+    color: var(--white);
+
     font-family: Arial, sans-serif;
     font-size: 1.4rem;
+
+    box-shadow: none;
+}
+
+.game-settings-button:hover,
+.game-settings-button:focus,
+.game-settings-button:focus-visible {
+    background: transparent;
+    color: var(--white);
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.game-settings-button:active {
+    background: transparent;
+    color: var(--white);
+    border: none;
+    box-shadow: none;
+
+    transform: translateY(calc(-50% + 5px));
 }
 
 
