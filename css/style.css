@@ -8,6 +8,7 @@
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -19,28 +20,32 @@ body {
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
+
     background: var(--table-green);
     color: var(--white);
+
     font-family: Georgia, "Times New Roman", serif;
 }
 
 #app {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
 }
 
 .screen {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 
-    padding: 8vh 24px 6vh;
+    padding:
+        max(6vh, env(safe-area-inset-top))
+        24px
+        max(5vh, env(safe-area-inset-bottom));
 
     text-align: center;
 }
@@ -49,6 +54,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    margin-top: 4vh;
 }
 
 h1 {
@@ -82,6 +89,9 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    margin-top: auto;
+    margin-bottom: 4vh;
 }
 
 button {
@@ -101,15 +111,38 @@ button {
 
     cursor: pointer;
 
-    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.3);
+    /* Remove browser button effects */
+    appearance: none;
+    -webkit-appearance: none;
 
-    transition:
-        transform 0.08s ease,
-        box-shadow 0.08s ease;
+    /* Absolutely no shadow */
+    box-shadow: none;
+
+    /* Remove focus outline */
+    outline: none;
+
+    transition: transform 0.06s ease;
+}
+
+button:hover {
+    background: var(--gold);
+    color: var(--white);
+}
+
+button:focus,
+button:focus-visible {
+    outline: none;
+    box-shadow: none;
 }
 
 button:active,
 button.pressed {
     transform: translateY(5px);
-    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    background: var(--gold);
+    color: var(--white);
+
+    border-color: var(--gold);
+
+    box-shadow: none;
 }
