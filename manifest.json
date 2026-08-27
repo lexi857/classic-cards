@@ -1,1 +1,10 @@
-
+{
+    "name": "Classic Cards",
+    "short_name": "Classic Cards",
+    "description": "A traditional card game experience for the web.",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#0b5d1e",
+    "theme_color": "#0b5d1e",
+    "orientation": "portrait"
+}
