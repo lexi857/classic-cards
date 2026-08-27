@@ -2,6 +2,8 @@
     --table-green: #0b5d1e;
     --gold: #d4af37;
     --white: #ffffff;
+    --black-suit: #111111;
+    --red-suit: #c62828;
 }
 
 * {
@@ -18,17 +20,20 @@ body {
 
 body {
     min-height: 100vh;
+    overflow: hidden;
     background: var(--table-green);
     color: var(--white);
     font-family: Georgia, "Times New Roman", serif;
 }
 
 #app {
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
 }
 
 .screen {
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,23 +43,28 @@ body {
 }
 
 h1 {
-    margin: 0 0 24px;
+    margin: 0 0 44px;
     font-size: clamp(2.5rem, 10vw, 4.5rem);
     font-weight: normal;
 }
 
 .logo {
-    margin-bottom: 48px;
+    margin-bottom: 72px;
     font-size: clamp(3rem, 14vw, 6rem);
     letter-spacing: 0.12em;
+    line-height: 1;
     white-space: nowrap;
+}
+
+.logo::first-letter {
+    color: var(--black-suit);
 }
 
 .home-buttons {
     width: min(100%, 420px);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
 button {
@@ -66,13 +76,22 @@ button {
     border-radius: 8px;
 
     background: var(--gold);
-    color: #111111;
+    color: var(--white);
 
     font: inherit;
     font-size: 1.2rem;
     cursor: pointer;
+
+    transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease;
+}
+
+button:hover {
+    filter: brightness(1.05);
 }
 
 button:active {
-    transform: translateY(1px);
+    transform: translateY(4px);
+    box-shadow: inset 0 3px 4px rgba(0, 0, 0, 0.25);
 }
