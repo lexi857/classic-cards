@@ -56,8 +56,12 @@ h1 {
     white-space: nowrap;
 }
 
-.logo::first-letter {
+.black-suit {
     color: var(--black-suit);
+}
+
+.red-suit {
+    color: var(--red-suit);
 }
 
 .home-buttons {
