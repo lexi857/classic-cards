@@ -46,6 +46,12 @@ body {
     min-height: 100dvh;
 
     text-align: center;
+
+    display: none;
+}
+
+.screen.active-screen {
+    display: block;
 }
 
 
@@ -57,13 +63,16 @@ body {
     height: 100dvh;
     overflow: hidden;
 
-    display: grid;
     grid-template-rows: 1fr 1fr;
 
     padding:
         max(6vh, env(safe-area-inset-top))
         24px
         max(5vh, env(safe-area-inset-bottom));
+}
+
+.home-screen.active-screen {
+    display: grid;
 }
 
 .home-top {
