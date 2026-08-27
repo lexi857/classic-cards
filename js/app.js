@@ -12,10 +12,14 @@ const screens = {
     mainMenu: document.getElementById("main-menu")
 };
 
-function showScreen(screen) {
-    Object.values(screens).forEach(currentScreen => {
-        currentScreen.hidden = currentScreen !== screen;
+function showScreen(screenToShow) {
+    Object.values(screens).forEach(screen => {
+        screen.classList.remove("active-screen");
     });
+
+    screenToShow.classList.add("active-screen");
+
+    window.scrollTo(0, 0);
 }
 
 
