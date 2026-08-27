@@ -1,1 +1,78 @@
+:root {
+    --table-green: #0b5d1e;
+    --gold: #d4af37;
+    --white: #ffffff;
+}
 
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--table-green);
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#app {
+    min-height: 100vh;
+}
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 24px;
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    font-weight: normal;
+}
+
+.logo {
+    margin-bottom: 48px;
+    font-size: clamp(3rem, 14vw, 6rem);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+}
+
+.home-buttons {
+    width: min(100%, 420px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+button {
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 20px;
+
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+
+    background: var(--gold);
+    color: #111111;
+
+    font: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(1px);
+}
