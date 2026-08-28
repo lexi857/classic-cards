@@ -9,7 +9,8 @@ console.log("Classic Cards initialized.");
 
 const screens = {
     home: document.getElementById("home-screen"),
-    mainMenu: document.getElementById("main-menu")
+    mainMenu: document.getElementById("main-menu"),
+    crazyEights: document.getElementById("crazy-eights-screen")
 };
 
 function showScreen(screenToShow) {
@@ -34,6 +35,17 @@ singlePlayerButton.addEventListener("click", () => {
     showScreen(screens.mainMenu);
 });
 
+
+/* =========================
+   Main Menu Game Buttons
+   ========================= */
+
+const crazyEightsButton =
+    document.querySelector("#main-menu .game-button");
+
+crazyEightsButton.addEventListener("click", () => {
+    showScreen(screens.crazyEights);
+});
 
 /* =========================
    Physical Button Interaction
