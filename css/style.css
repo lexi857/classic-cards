@@ -411,3 +411,73 @@ button.pressed {
     font-size: 1.2rem;
     opacity: 0.8;
 }
+
+/* =========================
+   Settings Screens
+   ========================= */
+
+.settings-screen {
+    height: 100dvh;
+    overflow: hidden;
+
+    padding:
+        max(5vh, env(safe-area-inset-top))
+        24px
+        max(5vh, env(safe-area-inset-bottom));
+}
+
+.settings-header {
+    position: relative;
+
+    width: min(100%, 600px);
+    min-height: 58px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-header h1 {
+    width: calc(100% - 52px);
+
+    margin: 0;
+
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: normal;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+.settings-close-button {
+    position: absolute;
+
+    top: 50%;
+    right: 0;
+
+    transform: translateY(-50%);
+
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+}
+
+.settings-close-button:active,
+.settings-close-button.pressed {
+    transform: translateY(calc(-50% + 5px));
+}
+
+.settings-options {
+    width: min(100%, 420px);
+
+    margin: 48px auto 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--home-spacing);
+}
+
+.settings-options button {
+    min-height: 58px;
+}
