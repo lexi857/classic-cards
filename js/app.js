@@ -88,6 +88,49 @@ returnToHomeButton.addEventListener("click", () => {
 });
 
 
+const gameSettingsButton =
+    document.getElementById("game-settings-button");
+
+gameSettingsButton.addEventListener("click", () => {
+    showScreen(screens.crazyEightsGameSettings);
+});
+
+
+const crazyEightsGameSettingsClose =
+    document.getElementById("crazy-eights-game-settings-close");
+
+crazyEightsGameSettingsClose.addEventListener("click", () => {
+    showScreen(screens.crazyEightsInGameSettings);
+});
+
+
+/* =========================
+   Crazy Eights Settings Choices
+   ========================= */
+
+const choiceButtons =
+    document.querySelectorAll(".choice-button");
+
+choiceButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const setting = button.dataset.setting;
+
+        choiceButtons.forEach(otherButton => {
+
+            if (otherButton.dataset.setting === setting) {
+                otherButton.classList.remove("selected");
+            }
+
+        });
+
+        button.classList.add("selected");
+    });
+
+});
+
+
 /* =========================
    Physical Button Interaction
    ========================= */
