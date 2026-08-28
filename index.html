@@ -71,10 +71,11 @@
 
                     <button
                         type="button"
-                        class="game-settings-button"
-                        aria-label="Crazy Eights Game Settings"
+                        id="game-settings-button"
+                        onclick="document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active-screen')); document.getElementById('crazy-eights-game-settings').classList.add('active-screen'); window.scrollTo(0, 0);"
+                    
                     >
-                        ⚙
+                        Game Settings
                     </button>
                 </div>
 
