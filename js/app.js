@@ -29,23 +29,24 @@ function showScreen(screenToShow) {
 
 
 /* =========================
-   Home Screen Buttons
+   Home Screen
    ========================= */
 
-const singlePlayerButton =
-    document.getElementById("single-player-button");
-
-singlePlayerButton.addEventListener("click", () => {
-    showScreen(screens.mainMenu);
-});
+document
+    .getElementById("single-player-button")
+    .addEventListener("click", () => {
+        showScreen(screens.mainMenu);
+    });
 
 
 /* =========================
-   Main Menu Game Buttons
+   Main Menu
    ========================= */
 
 const crazyEightsButton =
-    document.querySelector("#main-menu .game-button");
+    document.querySelector(
+        '#main-menu .game-button'
+    );
 
 crazyEightsButton.addEventListener("click", () => {
     showScreen(screens.crazyEights);
@@ -53,59 +54,58 @@ crazyEightsButton.addEventListener("click", () => {
 
 
 /* =========================
-   Crazy Eights In-Game Settings
+   Crazy Eights Game Screen
    ========================= */
 
-const crazyEightsSettingsButton =
-    document.getElementById("crazy-eights-settings-button");
-
-crazyEightsSettingsButton.addEventListener("click", () => {
-    showScreen(screens.crazyEightsInGameSettings);
-});
-
-
-const crazyEightsSettingsClose =
-    document.getElementById("crazy-eights-settings-close");
-
-crazyEightsSettingsClose.addEventListener("click", () => {
-    showScreen(screens.crazyEights);
-});
-
-
-const returnToMenuButton =
-    document.getElementById("return-to-menu-button");
-
-returnToMenuButton.addEventListener("click", () => {
-    showScreen(screens.mainMenu);
-});
-
-
-const returnToHomeButton =
-    document.getElementById("return-to-home-button");
-
-returnToHomeButton.addEventListener("click", () => {
-    showScreen(screens.home);
-});
-
-
-const gameSettingsButton =
-    document.getElementById("game-settings-button");
-
-gameSettingsButton.addEventListener("click", () => {
-    showScreen(screens.crazyEightsGameSettings);
-});
-
-
-const crazyEightsGameSettingsClose =
-    document.getElementById("crazy-eights-game-settings-close");
-
-crazyEightsGameSettingsClose.addEventListener("click", () => {
-    showScreen(screens.crazyEightsInGameSettings);
-});
+document
+    .getElementById("crazy-eights-settings-button")
+    .addEventListener("click", () => {
+        showScreen(screens.crazyEightsInGameSettings);
+    });
 
 
 /* =========================
-   Crazy Eights Settings Choices
+   Crazy Eights In-Game Settings
+   ========================= */
+
+document
+    .getElementById("crazy-eights-settings-close")
+    .addEventListener("click", () => {
+        showScreen(screens.crazyEights);
+    });
+
+document
+    .getElementById("game-settings-button")
+    .addEventListener("click", () => {
+        showScreen(screens.crazyEightsGameSettings);
+    });
+
+document
+    .getElementById("return-to-menu-button")
+    .addEventListener("click", () => {
+        showScreen(screens.mainMenu);
+    });
+
+document
+    .getElementById("return-to-home-button")
+    .addEventListener("click", () => {
+        showScreen(screens.home);
+    });
+
+
+/* =========================
+   Crazy Eights Game Settings
+   ========================= */
+
+document
+    .getElementById("crazy-eights-game-settings-close")
+    .addEventListener("click", () => {
+        showScreen(screens.crazyEightsInGameSettings);
+    });
+
+
+/* =========================
+   Setting Choices
    ========================= */
 
 const choiceButtons =
@@ -135,9 +135,11 @@ choiceButtons.forEach(button => {
    Physical Button Interaction
    ========================= */
 
-const buttons = document.querySelectorAll("button");
+const buttons =
+    document.querySelectorAll("button");
 
 buttons.forEach(button => {
+
     button.addEventListener("pointerdown", () => {
         button.classList.add("pressed");
     });
@@ -153,4 +155,5 @@ buttons.forEach(button => {
     button.addEventListener("pointerleave", () => {
         button.classList.remove("pressed");
     });
+
 });
