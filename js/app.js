@@ -12,7 +12,9 @@ const screens = {
     mainMenu: document.getElementById("main-menu"),
     crazyEights: document.getElementById("crazy-eights-screen"),
     crazyEightsInGameSettings:
-        document.getElementById("crazy-eights-in-game-settings")
+        document.getElementById("crazy-eights-in-game-settings"),
+    crazyEightsGameSettings:
+        document.getElementById("crazy-eights-game-settings")
 };
 
 function showScreen(screenToShow) {
