@@ -481,3 +481,50 @@ button.pressed {
 .settings-options button {
     min-height: 58px;
 }
+
+/* =========================
+   Game Settings
+   ========================= */
+
+.game-settings-options {
+    width: min(100%, 600px);
+
+    margin: 40px auto 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.setting-group {
+    width: 100%;
+}
+
+.setting-group h2 {
+    margin: 0 0 16px;
+
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.setting-choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.setting-choices .choice-button {
+    min-height: 52px;
+}
+
+.setting-choices .choice-button.selected {
+    border-color: var(--white);
+}
+
+.house-rules-button {
+    min-height: 52px;
+}
+
+.setting-group:nth-child(2) .setting-choices {
+    grid-template-columns: repeat(3, 1fr);
+}
