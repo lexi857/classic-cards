@@ -321,6 +321,114 @@
         
         </section>
 
+        <!-- Crazy Eights Game Settings -->
+<section
+    id="crazy-eights-game-settings"
+    class="screen settings-screen"
+>
+
+    <header class="settings-header">
+
+        <h1>Game Settings</h1>
+
+        <button
+            type="button"
+            class="icon-button settings-close-button"
+            id="crazy-eights-game-settings-close"
+            aria-label="Close game settings"
+        >
+            ×
+        </button>
+
+    </header>
+
+    <div class="game-settings-options">
+
+        <div class="setting-group">
+
+            <h2>Input Method</h2>
+
+            <div class="setting-choices">
+
+                <button
+                    type="button"
+                    class="choice-button selected"
+                    data-setting="input-method"
+                    data-value="tap"
+                >
+                    Tap
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    data-setting="input-method"
+                    data-value="drag"
+                >
+                    Drag &amp; Drop
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="setting-group">
+
+            <h2>AI Difficulty</h2>
+
+            <div class="setting-choices">
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    data-setting="ai-difficulty"
+                    data-value="easy"
+                >
+                    Easy
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button selected"
+                    data-setting="ai-difficulty"
+                    data-value="medium"
+                >
+                    Medium
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    data-setting="ai-difficulty"
+                    data-value="hard"
+                >
+                    Hard
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="setting-group">
+
+            <h2>House Rules</h2>
+
+            <button
+                type="button"
+                class="house-rules-button"
+                id="crazy-eights-house-rules-button"
+            >
+                House Rules
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
     </main>
 
     <script src="js/app.js?v=2"></script>
