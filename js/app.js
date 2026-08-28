@@ -10,7 +10,9 @@ console.log("Classic Cards initialized.");
 const screens = {
     home: document.getElementById("home-screen"),
     mainMenu: document.getElementById("main-menu"),
-    crazyEights: document.getElementById("crazy-eights-screen")
+    crazyEights: document.getElementById("crazy-eights-screen"),
+    crazyEightsInGameSettings:
+        document.getElementById("crazy-eights-in-game-settings")
 };
 
 function showScreen(screenToShow) {
@@ -46,6 +48,43 @@ const crazyEightsButton =
 crazyEightsButton.addEventListener("click", () => {
     showScreen(screens.crazyEights);
 });
+
+
+/* =========================
+   Crazy Eights In-Game Settings
+   ========================= */
+
+const crazyEightsSettingsButton =
+    document.getElementById("crazy-eights-settings-button");
+
+crazyEightsSettingsButton.addEventListener("click", () => {
+    showScreen(screens.crazyEightsInGameSettings);
+});
+
+
+const crazyEightsSettingsClose =
+    document.getElementById("crazy-eights-settings-close");
+
+crazyEightsSettingsClose.addEventListener("click", () => {
+    showScreen(screens.crazyEights);
+});
+
+
+const returnToMenuButton =
+    document.getElementById("return-to-menu-button");
+
+returnToMenuButton.addEventListener("click", () => {
+    showScreen(screens.mainMenu);
+});
+
+
+const returnToHomeButton =
+    document.getElementById("return-to-home-button");
+
+returnToHomeButton.addEventListener("click", () => {
+    showScreen(screens.home);
+});
+
 
 /* =========================
    Physical Button Interaction
