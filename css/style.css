@@ -165,9 +165,8 @@ h1 {
     top: 50%;
     right: 0;
 
-    transform: translateY(-50%);
-
     width: 52px;
+    height: 52px;
     min-height: 52px;
 
     padding: 0;
@@ -176,8 +175,41 @@ h1 {
     align-items: center;
     justify-content: center;
 
+    transform: translateY(-50%);
+
+    border: none;
+    border-radius: 0;
+
+    background: transparent;
+    color: var(--white);
+
     font-family: Arial, sans-serif;
     font-size: 1.7rem;
+
+    box-shadow: none;
+}
+
+.icon-button:hover,
+.icon-button:focus,
+.icon-button:focus-visible {
+    background: transparent;
+    color: var(--white);
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.icon-button:active,
+.icon-button.pressed {
+    background: transparent;
+    color: var(--white);
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    transform: translateY(calc(-50% + 5px));
 }
 
 .game-list {
