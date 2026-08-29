@@ -9,8 +9,12 @@ console.log("Classic Cards initialized.");
 
 const screens = {
     home: document.getElementById("home-screen"),
-    mainMenu: document.getElementById("main-menu"),
-    crazyEights: document.getElementById("crazy-eights-screen"),
+
+    mainMenu:
+        document.getElementById("main-menu"),
+
+    crazyEights:
+        document.getElementById("crazy-eights-screen"),
 
     crazyEightsInGameSettings:
         document.getElementById(
@@ -25,6 +29,11 @@ const screens = {
     crazyEightsHowToPlay:
         document.getElementById(
             "crazy-eights-how-to-play"
+        ),
+
+    crazyEightsHouseRules:
+        document.getElementById(
+            "crazy-eights-house-rules"
         )
 };
 
@@ -42,7 +51,7 @@ function showScreen(screenToShow) {
 
 
 /* =========================
-   Button Navigation
+   Navigation
    ========================= */
 
 document.addEventListener("click", event => {
@@ -87,7 +96,9 @@ document.addEventListener("click", event => {
     /* Crazy Eights → In-Game Settings */
 
     if (button.id === "crazy-eights-settings-button") {
-        showScreen(screens.crazyEightsInGameSettings);
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
         return;
     }
 
@@ -103,22 +114,58 @@ document.addEventListener("click", event => {
     /* In-Game Settings → How To Play */
 
     if (button.id === "how-to-play-button") {
-        showScreen(screens.crazyEightsHowToPlay);
+        showScreen(
+            screens.crazyEightsHowToPlay
+        );
         return;
     }
 
 
     /* How To Play → In-Game Settings */
 
-    if (button.id === "crazy-eights-how-to-play-close") {
-        showScreen(screens.crazyEightsInGameSettings);
+    if (
+        button.id ===
+        "crazy-eights-how-to-play-close"
+    ) {
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
+        return;
+    }
+
+
+    /* In-Game Settings → House Rules */
+
+    if (
+        button.id ===
+        "crazy-eights-house-rules-button"
+    ) {
+        showScreen(
+            screens.crazyEightsHouseRules
+        );
+        return;
+    }
+
+
+    /* House Rules → In-Game Settings */
+
+    if (
+        button.id ===
+        "crazy-eights-house-rules-close"
+    ) {
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
         return;
     }
 
 
     /* In-Game Settings → Crazy Eights */
 
-    if (button.id === "crazy-eights-settings-close") {
+    if (
+        button.id ===
+        "crazy-eights-settings-close"
+    ) {
         showScreen(screens.crazyEights);
         return;
     }
@@ -127,7 +174,9 @@ document.addEventListener("click", event => {
     /* In-Game Settings → Game Settings */
 
     if (button.id === "game-settings-button") {
-        showScreen(screens.crazyEightsGameSettings);
+        showScreen(
+            screens.crazyEightsGameSettings
+        );
         return;
     }
 
@@ -150,8 +199,13 @@ document.addEventListener("click", event => {
 
     /* Game Settings → In-Game Settings */
 
-    if (button.id === "crazy-eights-game-settings-close") {
-        showScreen(screens.crazyEightsInGameSettings);
+    if (
+        button.id ===
+        "crazy-eights-game-settings-close"
+    ) {
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
         return;
     }
 
@@ -159,7 +213,7 @@ document.addEventListener("click", event => {
 
 
 /* =========================
-   Setting Choices
+   Choice Buttons
    ========================= */
 
 document.addEventListener("click", event => {
@@ -171,17 +225,71 @@ document.addEventListener("click", event => {
         return;
     }
 
-    const setting = button.dataset.setting;
+    const setting =
+        button.dataset.setting;
 
     document
         .querySelectorAll(
             `.choice-button[data-setting="${setting}"]`
         )
         .forEach(otherButton => {
-            otherButton.classList.remove("selected");
+            otherButton.classList.remove(
+                "selected"
+            );
         });
 
     button.classList.add("selected");
+
+});
+
+
+/* =========================
+   House Rule Toggles
+   ========================= */
+
+document.addEventListener("click", event => {
+
+    const button =
+        event.target.closest(".toggle-button");
+
+    if (!button) {
+        return;
+    }
+
+    const isOn =
+        button.getAttribute("aria-pressed") === "true";
+
+    const newState = !isOn;
+
+    button.setAttribute(
+        "aria-pressed",
+        String(newState)
+    );
+
+    const ruleName =
+        button.dataset.houseRule;
+
+    const labels = {
+        "ace-reverse":
+            "Ace Reverse",
+
+        "two-draw-two":
+            "Two Draw Two",
+
+        "queen-skip":
+            "Queen Skip",
+
+        "stack-draw-twos":
+            "Stack Draw Twos",
+
+        "multiple-same-rank":
+            "Multiple Same Rank"
+    };
+
+    button.setAttribute(
+        "aria-label",
+        `${labels[ruleName]} ${newState ? "On" : "Off"}`
+    );
 
 });
 
@@ -200,11 +308,16 @@ document.querySelectorAll("button").forEach(button => {
         button.classList.remove("pressed");
     };
 
-    button.addEventListener("pointerup", releaseButton);
+    button.addEventListener(
+        "pointerup",
+        releaseButton
+    );
+
     button.addEventListener(
         "pointercancel",
         releaseButton
     );
+
     button.addEventListener(
         "pointerleave",
         releaseButton
