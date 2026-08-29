@@ -528,3 +528,39 @@ button.pressed {
 .setting-group:nth-child(2) .setting-choices {
     grid-template-columns: repeat(3, 1fr);
 }
+
+/* =========================
+   How To Play
+   ========================= */
+
+.how-to-play-content {
+    width: min(100%, 600px);
+
+    height: calc(100dvh - 120px);
+
+    margin: 32px auto 0;
+
+    padding: 0 4px 32px;
+
+    overflow-y: auto;
+
+    text-align: left;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.how-to-play-content h2 {
+    margin: 0 0 24px;
+
+    font-size: 1.4rem;
+    font-weight: normal;
+
+    text-align: center;
+}
+
+.how-to-play-content p {
+    margin: 0 0 20px;
+
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
