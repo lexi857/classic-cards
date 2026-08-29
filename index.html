@@ -37,7 +37,6 @@
 
             </div>
 
-
             <div class="home-buttons">
 
                 <button
@@ -106,6 +105,7 @@
                         class="game-settings-button"
                         data-game="crazy-eights"
                         aria-label="Crazy Eights Game Settings"
+                        onclick="document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active-screen')); document.getElementById('crazy-eights-game-settings').classList.add('active-screen'); window.scrollTo(0, 0);"
                     >
                         ⚙
                     </button>
