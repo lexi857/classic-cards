@@ -16,40 +16,64 @@
     <main id="app">
 
         <!-- Home Screen -->
-        <section id="home-screen" class="screen home-screen active-screen">
+        <section
+            id="home-screen"
+            class="screen home-screen active-screen"
+        >
 
             <div class="home-top">
+
                 <h1>Classic Cards</h1>
 
-                <div class="logo" aria-label="Classic Cards logo">
+                <div
+                    class="logo"
+                    aria-label="Classic Cards logo"
+                >
                     <span class="black-suit">♠</span>
                     <span class="red-suit">♥</span>
                     <span class="black-suit">♣</span>
                     <span class="red-suit">♦</span>
                 </div>
+
             </div>
 
+
             <div class="home-buttons">
-                <button type="button" id="single-player-button">
+
+                <button
+                    type="button"
+                    id="single-player-button"
+                >
                     Single Player
                 </button>
 
-                <button type="button" id="multiplayer-button">
+                <button
+                    type="button"
+                    id="multiplayer-button"
+                >
                     Multiplayer
                 </button>
 
-                <button type="button" id="tour-button">
+                <button
+                    type="button"
+                    id="tour-button"
+                >
                     Classic Cards Tour
                 </button>
+
             </div>
 
         </section>
 
 
         <!-- Main Menu -->
-        <section id="main-menu" class="screen menu-screen">
+        <section
+            id="main-menu"
+            class="screen menu-screen"
+        >
 
             <header class="menu-header">
+
                 <h1>Classic Cards</h1>
 
                 <button
@@ -60,373 +84,507 @@
                 >
                     ⚙
                 </button>
+
             </header>
+
 
             <div class="game-list">
 
+                <!-- Crazy Eights -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="crazy-eights"
+                    >
                         Crazy Eights
                     </button>
 
-                    <button type="button" id="game-settings-button">
-                        Game Settings
+                    <button
+                        type="button"
+                        class="game-settings-button"
+                        data-game="crazy-eights"
+                        aria-label="Crazy Eights Game Settings"
+                    >
+                        ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Baccarat -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="baccarat"
+                    >
                         Baccarat
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="baccarat"
                         aria-label="Baccarat Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Blackjack -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="blackjack"
+                    >
                         Blackjack
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="blackjack"
                         aria-label="Blackjack Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Solitaire -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="solitaire"
+                    >
                         Solitaire
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="solitaire"
                         aria-label="Solitaire Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Speed -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="speed"
+                    >
                         Speed
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="speed"
                         aria-label="Speed Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Five Card Draw -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="five-card-draw"
+                    >
                         Five Card Draw
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="five-card-draw"
                         aria-label="Five Card Draw Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Texas Hold'em -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="texas-holdem"
+                    >
                         Texas Hold'em
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="texas-holdem"
                         aria-label="Texas Hold'em Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Rummy -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="rummy"
+                    >
                         Rummy
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="rummy"
                         aria-label="Rummy Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Gin Rummy -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="gin-rummy"
+                    >
                         Gin Rummy
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="gin-rummy"
                         aria-label="Gin Rummy Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Hearts -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="hearts"
+                    >
                         Hearts
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="hearts"
                         aria-label="Hearts Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Spades -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="spades"
+                    >
                         Spades
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="spades"
                         aria-label="Spades Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
+
+                <!-- Euchre -->
                 <div class="game-option">
-                    <button type="button" class="game-button">
+
+                    <button
+                        type="button"
+                        class="game-button"
+                        data-game="euchre"
+                    >
                         Euchre
                     </button>
 
                     <button
                         type="button"
                         class="game-settings-button"
+                        data-game="euchre"
                         aria-label="Euchre Game Settings"
                     >
                         ⚙
                     </button>
+
                 </div>
 
             </div>
 
         </section>
+
+
         <!-- Crazy Eights Game Screen -->
-        <section id="crazy-eights-screen" class="screen game-screen">
-           
+        <section
+            id="crazy-eights-screen"
+            class="screen game-screen"
+        >
+
             <header class="game-header">
-                
+
                 <h1>Crazy Eights</h1>
-                
+
                 <button
                     type="button"
                     class="icon-button"
                     id="crazy-eights-settings-button"
                     aria-label="Crazy Eights In-Game Settings"
-                    
                 >
                     ⚙
                 </button>
-            
+
             </header>
-            
+
+
             <div class="game-table">
-                
+
                 <p class="game-placeholder">
-                    
                     Crazy Eights
-                
                 </p>
-                
+
                 <button
                     type="button"
                     id="crazy-eights-return-button"
-                    
                 >
                     Return To Menu
                 </button>
-            
+
             </div>
-        
+
         </section>
+
 
         <!-- Crazy Eights In-Game Settings -->
         <section
             id="crazy-eights-in-game-settings"
             class="screen settings-screen"
-            
         >
+
             <header class="settings-header">
-                
+
                 <h1>Crazy Eights</h1>
-                
+
                 <button
                     type="button"
                     class="icon-button settings-close-button"
                     id="crazy-eights-settings-close"
                     aria-label="Close settings"
-                    
                 >
                     ×
                 </button>
-            
+
             </header>
-            
+
+
             <div class="settings-options">
-                
-                <button type="button" id="how-to-play-button">
+
+                <button
+                    type="button"
+                    id="how-to-play-button"
+                >
                     How To Play
                 </button>
-                
-                <button type="button" id="tutorial-button">
+
+                <button
+                    type="button"
+                    id="tutorial-button"
+                >
                     Tutorial
                 </button>
-                
-                <button type="button" id="game-settings-button">
+
+                <button
+                    type="button"
+                    id="game-settings-button"
+                >
                     Game Settings
                 </button>
-                
-                <button type="button" id="return-to-menu-button">
+
+                <button
+                    type="button"
+                    id="return-to-menu-button"
+                >
                     Return To Menu
                 </button>
-                
-                <button type="button" id="return-to-home-button">
+
+                <button
+                    type="button"
+                    id="return-to-home-button"
+                >
                     Return To Home
                 </button>
-            
+
             </div>
-        
+
         </section>
 
+
         <!-- Crazy Eights Game Settings -->
-<section
-    id="crazy-eights-game-settings"
-    class="screen settings-screen"
->
-
-    <header class="settings-header">
-
-        <h1>Game Settings</h1>
-
-        <button
-            type="button"
-            class="icon-button settings-close-button"
-            id="crazy-eights-game-settings-close"
-            aria-label="Close game settings"
+        <section
+            id="crazy-eights-game-settings"
+            class="screen settings-screen"
         >
-            ×
-        </button>
 
-    </header>
+            <header class="settings-header">
 
-    <div class="game-settings-options">
-
-        <div class="setting-group">
-
-            <h2>Input Method</h2>
-
-            <div class="setting-choices">
+                <h1>Game Settings</h1>
 
                 <button
                     type="button"
-                    class="choice-button selected"
-                    data-setting="input-method"
-                    data-value="tap"
+                    class="icon-button settings-close-button"
+                    id="crazy-eights-game-settings-close"
+                    aria-label="Close game settings"
                 >
-                    Tap
+                    ×
                 </button>
 
-                <button
-                    type="button"
-                    class="choice-button"
-                    data-setting="input-method"
-                    data-value="drag"
-                >
-                    Drag &amp; Drop
-                </button>
+            </header>
+
+
+            <div class="game-settings-options">
+
+                <div class="setting-group">
+
+                    <h2>Input Method</h2>
+
+                    <div class="setting-choices">
+
+                        <button
+                            type="button"
+                            class="choice-button selected"
+                            data-setting="input-method"
+                            data-value="tap"
+                        >
+                            Tap
+                        </button>
+
+                        <button
+                            type="button"
+                            class="choice-button"
+                            data-setting="input-method"
+                            data-value="drag"
+                        >
+                            Drag &amp; Drop
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-group">
+
+                    <h2>AI Difficulty</h2>
+
+                    <div class="setting-choices">
+
+                        <button
+                            type="button"
+                            class="choice-button"
+                            data-setting="ai-difficulty"
+                            data-value="easy"
+                        >
+                            Easy
+                        </button>
+
+                        <button
+                            type="button"
+                            class="choice-button selected"
+                            data-setting="ai-difficulty"
+                            data-value="medium"
+                        >
+                            Medium
+                        </button>
+
+                        <button
+                            type="button"
+                            class="choice-button"
+                            data-setting="ai-difficulty"
+                            data-value="hard"
+                        >
+                            Hard
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-group">
+
+                    <h2>House Rules</h2>
+
+                    <button
+                        type="button"
+                        class="house-rules-button"
+                        id="crazy-eights-house-rules-button"
+                    >
+                        House Rules
+                    </button>
+
+                </div>
 
             </div>
 
-        </div>
-
-
-        <div class="setting-group">
-
-            <h2>AI Difficulty</h2>
-
-            <div class="setting-choices">
-
-                <button
-                    type="button"
-                    class="choice-button"
-                    data-setting="ai-difficulty"
-                    data-value="easy"
-                >
-                    Easy
-                </button>
-
-                <button
-                    type="button"
-                    class="choice-button selected"
-                    data-setting="ai-difficulty"
-                    data-value="medium"
-                >
-                    Medium
-                </button>
-
-                <button
-                    type="button"
-                    class="choice-button"
-                    data-setting="ai-difficulty"
-                    data-value="hard"
-                >
-                    Hard
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="setting-group">
-
-            <h2>House Rules</h2>
-
-            <button
-                type="button"
-                class="house-rules-button"
-                id="crazy-eights-house-rules-button"
-            >
-                House Rules
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
+        </section>
 
     </main>
+
 
     <script src="js/app.js?v=3"></script>
 
