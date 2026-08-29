@@ -161,6 +161,7 @@ h1 {
 
 .icon-button {
     position: absolute;
+
     top: 50%;
     right: 0;
 
@@ -244,6 +245,7 @@ h1 {
 
 .game-settings-button {
     position: absolute;
+
     top: 50%;
     right: 0;
 
@@ -266,8 +268,6 @@ h1 {
 
     font-family: Arial, sans-serif;
     font-size: 1.4rem;
-
-    box-shadow: none;
 }
 
 .game-settings-button:hover,
@@ -289,59 +289,6 @@ h1 {
     transform: translateY(calc(-50% + 5px));
 }
 
-
-/* =========================
-   Buttons
-   ========================= */
-
-button {
-    width: 100%;
-    min-height: 56px;
-
-    padding: 14px 20px;
-
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-
-    background: var(--gold);
-    color: var(--white);
-
-    font: inherit;
-    font-size: 1.2rem;
-
-    cursor: pointer;
-
-    appearance: none;
-    -webkit-appearance: none;
-
-    outline: none;
-    box-shadow: none;
-
-    transition: transform 0.06s ease;
-}
-
-button:hover {
-    background: var(--gold);
-    color: var(--white);
-}
-
-button:focus,
-button:focus-visible {
-    outline: none;
-    box-shadow: none;
-}
-
-button:active,
-button.pressed {
-    transform: translateY(5px);
-
-    background: var(--gold);
-    color: var(--white);
-
-    border-color: var(--gold);
-
-    box-shadow: none;
-}
 
 /* =========================
    Game Screen
@@ -412,6 +359,7 @@ button.pressed {
     opacity: 0.8;
 }
 
+
 /* =========================
    Settings Screens
    ========================= */
@@ -451,23 +399,6 @@ button.pressed {
     white-space: nowrap;
 }
 
-.settings-close-button {
-    position: absolute;
-
-    top: 50%;
-    right: 0;
-
-    transform: translateY(-50%);
-
-    font-family: Arial, sans-serif;
-    font-size: 2rem;
-}
-
-.settings-close-button:active,
-.settings-close-button.pressed {
-    transform: translateY(calc(-50% + 5px));
-}
-
 .settings-options {
     width: min(100%, 420px);
 
@@ -478,9 +409,6 @@ button.pressed {
     gap: var(--home-spacing);
 }
 
-.settings-options button {
-    min-height: 58px;
-}
 
 /* =========================
    Game Settings
@@ -521,13 +449,14 @@ button.pressed {
     border-color: var(--white);
 }
 
+.setting-group:nth-child(2) .setting-choices {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .house-rules-button {
     min-height: 52px;
 }
 
-.setting-group:nth-child(2) .setting-choices {
-    grid-template-columns: repeat(3, 1fr);
-}
 
 /* =========================
    How To Play
@@ -565,6 +494,7 @@ button.pressed {
     line-height: 1.6;
 }
 
+
 /* =========================
    House Rules
    ========================= */
@@ -596,18 +526,27 @@ button.pressed {
 }
 
 .house-rule-name {
+    flex: 1;
+
     font-size: 1.1rem;
+
     text-align: left;
 }
 
-.toggle-button {
+.house-rule .toggle-button {
     flex: 0 0 auto;
 
     width: 56px;
     height: 32px;
+    min-width: 56px;
     min-height: 32px;
 
+    margin: 0;
     padding: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
     border: none;
     border-radius: 999px;
@@ -615,33 +554,59 @@ button.pressed {
     background: rgba(255, 255, 255, 0.25);
     color: transparent;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    font-size: 0;
 
-    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
 
-    transition: background 0.12s ease;
-}
-
-.toggle-button:hover,
-.toggle-button:focus,
-.toggle-button:focus-visible {
-    background: rgba(255, 255, 255, 0.25);
-    border: none;
-    box-shadow: none;
     outline: none;
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transform: none;
+
+    transition:
+        background 0.12s ease,
+        transform 0.06s ease;
 }
 
-.toggle-button[aria-pressed="true"] {
-    background: var(--gold);
+.house-rule .toggle-button:hover,
+.house-rule .toggle-button:focus,
+.house-rule .toggle-button:focus-visible {
+    background: rgba(255, 255, 255, 0.25);
 
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.house-rule .toggle-button[aria-pressed="true"] {
+    background: var(--gold);
     justify-content: flex-end;
+}
+
+.house-rule .toggle-button:active,
+.house-rule .toggle-button.pressed {
+    transform: translateY(2px);
+
+    background: rgba(255, 255, 255, 0.25);
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.house-rule .toggle-button[aria-pressed="true"]:active,
+.house-rule .toggle-button[aria-pressed="true"].pressed {
+    background: var(--gold);
 }
 
 .toggle-knob {
     width: 26px;
     height: 26px;
+
+    flex: 0 0 26px;
 
     border-radius: 50%;
 
@@ -650,17 +615,56 @@ button.pressed {
     pointer-events: none;
 }
 
-.toggle-button:active,
-.toggle-button.pressed {
-    transform: translateY(2px);
 
-    background: rgba(255, 255, 255, 0.25);
+/* =========================
+   General Buttons
+   ========================= */
 
+button {
+    width: 100%;
+    min-height: 56px;
+
+    padding: 14px 20px;
+
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+
+    background: var(--gold);
+    color: var(--white);
+
+    font: inherit;
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    outline: none;
+    box-shadow: none;
+
+    transition: transform 0.06s ease;
+}
+
+button:hover {
+    background: var(--gold);
+    color: var(--white);
+}
+
+button:focus,
+button:focus-visible {
+    outline: none;
     box-shadow: none;
 }
 
-.toggle-button[aria-pressed="true"]:active,
-.toggle-button[aria-pressed="true"].pressed {
-    background: var(--gold);
-}
+button:active,
+button.pressed {
+    transform: translateY(5px);
 
+    background: var(--gold);
+    color: var(--white);
+
+    border-color: var(--gold);
+
+    box-shadow: none;
+}
