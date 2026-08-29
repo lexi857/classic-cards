@@ -43,7 +43,9 @@ document.addEventListener("click", event => {
     }
 
 
-    /* Home → Main Menu */
+    /* =========================
+       Home Screen
+       ========================= */
 
     if (button.id === "single-player-button") {
         showScreen(screens.mainMenu);
@@ -51,18 +53,35 @@ document.addEventListener("click", event => {
     }
 
 
-    /* Main Menu → Crazy Eights */
+    /* =========================
+       Main Menu
+       ========================= */
+
+    /* Crazy Eights game */
 
     if (
         button.classList.contains("game-button") &&
-        button.textContent.trim() === "Crazy Eights"
+        button.dataset.game === "crazy-eights"
     ) {
         showScreen(screens.crazyEights);
         return;
     }
 
 
-    /* Crazy Eights → In-Game Settings */
+    /* Crazy Eights game settings */
+
+    if (
+        button.classList.contains("game-settings-button") &&
+        button.dataset.game === "crazy-eights"
+    ) {
+        showScreen(screens.crazyEightsGameSettings);
+        return;
+    }
+
+
+    /* =========================
+       Crazy Eights Game Screen
+       ========================= */
 
     if (button.id === "crazy-eights-settings-button") {
         showScreen(screens.crazyEightsInGameSettings);
@@ -70,7 +89,15 @@ document.addEventListener("click", event => {
     }
 
 
-    /* In-Game Settings → Game */
+    if (button.id === "crazy-eights-return-button") {
+        showScreen(screens.mainMenu);
+        return;
+    }
+
+
+    /* =========================
+       Crazy Eights In-Game Settings
+       ========================= */
 
     if (button.id === "crazy-eights-settings-close") {
         showScreen(screens.crazyEights);
@@ -78,15 +105,11 @@ document.addEventListener("click", event => {
     }
 
 
-    /* In-Game Settings → Game Settings */
-
     if (button.id === "game-settings-button") {
         showScreen(screens.crazyEightsGameSettings);
         return;
     }
 
-
-    /* In-Game Settings → Main Menu */
 
     if (button.id === "return-to-menu-button") {
         showScreen(screens.mainMenu);
@@ -94,15 +117,15 @@ document.addEventListener("click", event => {
     }
 
 
-    /* In-Game Settings → Home */
-
     if (button.id === "return-to-home-button") {
         showScreen(screens.home);
         return;
     }
 
 
-    /* Game Settings → In-Game Settings */
+    /* =========================
+       Crazy Eights Game Settings
+       ========================= */
 
     if (button.id === "crazy-eights-game-settings-close") {
         showScreen(screens.crazyEightsInGameSettings);
@@ -127,7 +150,9 @@ document.addEventListener("click", event => {
     const setting = button.dataset.setting;
 
     document
-        .querySelectorAll(`.choice-button[data-setting="${setting}"]`)
+        .querySelectorAll(
+            `.choice-button[data-setting="${setting}"]`
+        )
         .forEach(otherButton => {
             otherButton.classList.remove("selected");
         });
