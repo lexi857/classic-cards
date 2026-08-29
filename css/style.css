@@ -564,3 +564,103 @@ button.pressed {
     font-size: 1.05rem;
     line-height: 1.6;
 }
+
+/* =========================
+   House Rules
+   ========================= */
+
+.house-rules-options {
+    width: min(100%, 600px);
+
+    margin: 40px auto 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.house-rule {
+    width: 100%;
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.house-rule:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.house-rule-name {
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.toggle-button {
+    flex: 0 0 auto;
+
+    width: 56px;
+    height: 32px;
+    min-height: 32px;
+
+    padding: 3px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.25);
+    color: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    box-shadow: none;
+
+    transition: background 0.12s ease;
+}
+
+.toggle-button:hover,
+.toggle-button:focus,
+.toggle-button:focus-visible {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.toggle-button[aria-pressed="true"] {
+    background: var(--gold);
+
+    justify-content: flex-end;
+}
+
+.toggle-knob {
+    width: 26px;
+    height: 26px;
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    pointer-events: none;
+}
+
+.toggle-button:active,
+.toggle-button.pressed {
+    transform: translateY(2px);
+
+    background: rgba(255, 255, 255, 0.25);
+
+    box-shadow: none;
+}
+
+.toggle-button[aria-pressed="true"]:active,
+.toggle-button[aria-pressed="true"].pressed {
+    background: var(--gold);
+}
+
