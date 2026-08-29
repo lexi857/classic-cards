@@ -11,10 +11,21 @@ const screens = {
     home: document.getElementById("home-screen"),
     mainMenu: document.getElementById("main-menu"),
     crazyEights: document.getElementById("crazy-eights-screen"),
+
     crazyEightsInGameSettings:
-        document.getElementById("crazy-eights-in-game-settings"),
+        document.getElementById(
+            "crazy-eights-in-game-settings"
+        ),
+
     crazyEightsGameSettings:
-        document.getElementById("crazy-eights-game-settings")
+        document.getElementById(
+            "crazy-eights-game-settings"
+        ),
+
+    crazyEightsHowToPlay:
+        document.getElementById(
+            "crazy-eights-how-to-play"
+        )
 };
 
 
@@ -89,6 +100,22 @@ document.addEventListener("click", event => {
     }
 
 
+    /* In-Game Settings → How To Play */
+
+    if (button.id === "how-to-play-button") {
+        showScreen(screens.crazyEightsHowToPlay);
+        return;
+    }
+
+
+    /* How To Play → In-Game Settings */
+
+    if (button.id === "crazy-eights-how-to-play-close") {
+        showScreen(screens.crazyEightsInGameSettings);
+        return;
+    }
+
+
     /* In-Game Settings → Crazy Eights */
 
     if (button.id === "crazy-eights-settings-close") {
@@ -137,7 +164,8 @@ document.addEventListener("click", event => {
 
 document.addEventListener("click", event => {
 
-    const button = event.target.closest(".choice-button");
+    const button =
+        event.target.closest(".choice-button");
 
     if (!button) {
         return;
@@ -173,7 +201,13 @@ document.querySelectorAll("button").forEach(button => {
     };
 
     button.addEventListener("pointerup", releaseButton);
-    button.addEventListener("pointercancel", releaseButton);
-    button.addEventListener("pointerleave", releaseButton);
+    button.addEventListener(
+        "pointercancel",
+        releaseButton
+    );
+    button.addEventListener(
+        "pointerleave",
+        releaseButton
+    );
 
 });
