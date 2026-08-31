@@ -39,11 +39,25 @@ const screens = {
 
 
 /* =========================
-   Game Settings Return Location
+   Game Settings Navigation Memory
    ========================= */
 
-let gameSettingsReturnScreen = screens.mainMenu;
+/*
+   This remembers where Game Settings
+   was originally opened from.
 
+   It can be either:
+   - Main Menu
+   - Crazy Eights game
+*/
+
+let gameSettingsReturnScreen =
+    screens.mainMenu;
+
+
+/* =========================
+   Show Screen
+   ========================= */
 
 function showScreen(screenToShow) {
 
@@ -65,7 +79,8 @@ function showScreen(screenToShow) {
 
 document.addEventListener("click", event => {
 
-    const button = event.target.closest("button");
+    const button =
+        event.target.closest("button");
 
     if (!button) {
         return;
@@ -76,9 +91,14 @@ document.addEventListener("click", event => {
        Home → Main Menu
        ========================= */
 
-    if (button.id === "single-player-button") {
+    if (
+        button.id ===
+        "single-player-button"
+    ) {
 
-        showScreen(screens.mainMenu);
+        showScreen(
+            screens.mainMenu
+        );
 
         return;
     }
@@ -93,7 +113,9 @@ document.addEventListener("click", event => {
         button.dataset.game === "crazy-eights"
     ) {
 
-        showScreen(screens.crazyEights);
+        showScreen(
+            screens.crazyEights
+        );
 
         return;
     }
@@ -108,7 +130,14 @@ document.addEventListener("click", event => {
         button.dataset.game === "crazy-eights"
     ) {
 
-        gameSettingsReturnScreen = screens.mainMenu;
+        /*
+           We came from the Main Menu.
+           Remember that before opening
+           Game Settings.
+        */
+
+        gameSettingsReturnScreen =
+            screens.mainMenu;
 
         showScreen(
             screens.crazyEightsGameSettings
@@ -144,7 +173,9 @@ document.addEventListener("click", event => {
         "crazy-eights-return-button"
     ) {
 
-        showScreen(screens.mainMenu);
+        showScreen(
+            screens.mainMenu
+        );
 
         return;
     }
@@ -202,13 +233,20 @@ document.addEventListener("click", event => {
 
 
     /* =========================
-       House Rules → In-Game Settings
+       House Rules → Previous Settings Screen
        ========================= */
 
     if (
         button.id ===
         "crazy-eights-house-rules-close"
     ) {
+
+        /*
+           House Rules were opened from the
+           In-Game Settings screen.
+
+           Therefore, return there.
+        */
 
         showScreen(
             screens.crazyEightsInGameSettings
@@ -227,7 +265,9 @@ document.addEventListener("click", event => {
         "crazy-eights-settings-close"
     ) {
 
-        showScreen(screens.crazyEights);
+        showScreen(
+            screens.crazyEights
+        );
 
         return;
     }
@@ -241,6 +281,13 @@ document.addEventListener("click", event => {
         button.id ===
         "game-settings-button"
     ) {
+
+        /*
+           Game Settings were opened from
+           the Crazy Eights game.
+
+           Remember that destination.
+        */
 
         gameSettingsReturnScreen =
             screens.crazyEights;
@@ -262,7 +309,9 @@ document.addEventListener("click", event => {
         "return-to-menu-button"
     ) {
 
-        showScreen(screens.mainMenu);
+        showScreen(
+            screens.mainMenu
+        );
 
         return;
     }
@@ -277,7 +326,9 @@ document.addEventListener("click", event => {
         "return-to-home-button"
     ) {
 
-        showScreen(screens.home);
+        showScreen(
+            screens.home
+        );
 
         return;
     }
@@ -291,6 +342,11 @@ document.addEventListener("click", event => {
         button.id ===
         "crazy-eights-game-settings-close"
     ) {
+
+        /*
+           Return to whichever screen
+           originally opened Game Settings.
+        */
 
         showScreen(
             gameSettingsReturnScreen
@@ -309,7 +365,9 @@ document.addEventListener("click", event => {
 document.addEventListener("click", event => {
 
     const button =
-        event.target.closest(".choice-button");
+        event.target.closest(
+            ".choice-button"
+        );
 
     if (!button) {
         return;
@@ -330,7 +388,9 @@ document.addEventListener("click", event => {
 
         });
 
-    button.classList.add("selected");
+    button.classList.add(
+        "selected"
+    );
 
 });
 
@@ -342,16 +402,21 @@ document.addEventListener("click", event => {
 document.addEventListener("click", event => {
 
     const button =
-        event.target.closest(".toggle-button");
+        event.target.closest(
+            ".toggle-button"
+        );
 
     if (!button) {
         return;
     }
 
     const isOn =
-        button.getAttribute("aria-pressed") === "true";
+        button.getAttribute(
+            "aria-pressed"
+        ) === "true";
 
-    const newState = !isOn;
+    const newState =
+        !isOn;
 
     button.setAttribute(
         "aria-pressed",
@@ -392,37 +457,46 @@ document.addEventListener("click", event => {
    Physical Button Interaction
    ========================= */
 
-document.querySelectorAll("button").forEach(button => {
+document
+    .querySelectorAll("button")
+    .forEach(button => {
 
-    button.addEventListener("pointerdown", () => {
+        button.addEventListener(
+            "pointerdown",
+            () => {
 
-        button.classList.add("pressed");
+                button.classList.add(
+                    "pressed"
+                );
+
+            }
+        );
+
+
+        const releaseButton = () => {
+
+            button.classList.remove(
+                "pressed"
+            );
+
+        };
+
+
+        button.addEventListener(
+            "pointerup",
+            releaseButton
+        );
+
+
+        button.addEventListener(
+            "pointercancel",
+            releaseButton
+        );
+
+
+        button.addEventListener(
+            "pointerleave",
+            releaseButton
+        );
 
     });
-
-
-    const releaseButton = () => {
-
-        button.classList.remove("pressed");
-
-    };
-
-
-    button.addEventListener(
-        "pointerup",
-        releaseButton
-    );
-
-
-    button.addEventListener(
-        "pointercancel",
-        releaseButton
-    );
-
-
-    button.addEventListener(
-        "pointerleave",
-        releaseButton
-    );
-
-});
