@@ -533,7 +533,14 @@ h1 {
     text-align: left;
 }
 
+
+/* =========================
+   House Rules Toggle Switches
+   ========================= */
+
 .house-rule .toggle-button {
+    position: relative;
+
     flex: 0 0 auto;
 
     width: 56px;
@@ -542,11 +549,7 @@ h1 {
     min-height: 32px;
 
     margin: 0;
-    padding: 3px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    padding: 0;
 
     border: none;
     border-radius: 999px;
@@ -559,40 +562,37 @@ h1 {
     appearance: none;
     -webkit-appearance: none;
 
-    outline: none;
-    box-shadow: none;
+    outline: none !important;
+    box-shadow: none !important;
+
+    -webkit-tap-highlight-color: transparent;
 
     cursor: pointer;
 
-    transform: none;
+    transform: none !important;
 
-    transition:
-        background 0.12s ease,
-        transform 0.06s ease;
+    transition: background-color 0.15s ease;
 }
 
 .house-rule .toggle-button:hover,
 .house-rule .toggle-button:focus,
-.house-rule .toggle-button:focus-visible {
-    background: rgba(255, 255, 255, 0.25);
-
+.house-rule .toggle-button:focus-visible,
+.house-rule .toggle-button:active,
+.house-rule .toggle-button.pressed {
     border: none;
-    outline: none;
-    box-shadow: none;
-}
+    outline: none !important;
+    box-shadow: none !important;
 
-.house-rule .toggle-button[aria-pressed="true"] {
-    background: var(--gold);
-    justify-content: flex-end;
+    transform: none !important;
 }
 
 .house-rule .toggle-button:active,
 .house-rule .toggle-button.pressed {
-    transform: none;
+    background: rgba(255, 255, 255, 0.25);
+}
 
-    border: none;
-    outline: none;
-    box-shadow: none;
+.house-rule .toggle-button[aria-pressed="true"] {
+    background: var(--gold);
 }
 
 .house-rule .toggle-button[aria-pressed="true"]:active,
@@ -601,16 +601,32 @@ h1 {
 }
 
 .toggle-knob {
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
     width: 26px;
     height: 26px;
 
-    flex: 0 0 26px;
+    margin: 0;
+    padding: 0;
 
     border-radius: 50%;
 
     background: var(--white);
 
     pointer-events: none;
+
+    box-shadow: none !important;
+
+    transform: translateX(0);
+
+    transition: transform 0.15s ease;
+}
+
+.house-rule .toggle-button[aria-pressed="true"] .toggle-knob {
+    transform: translateX(24px);
 }
 
 
