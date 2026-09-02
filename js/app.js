@@ -9,56 +9,37 @@ console.log("Classic Cards initialized.");
 
 const screens = {
     home: document.getElementById("home-screen"),
-
-    mainMenu:
-        document.getElementById("main-menu"),
-
-    crazyEights:
-        document.getElementById("crazy-eights-screen"),
-
+    mainMenu: document.getElementById("main-menu"),
+    crazyEights: document.getElementById("crazy-eights-screen"),
     crazyEightsInGameSettings:
-        document.getElementById(
-            "crazy-eights-in-game-settings"
-        ),
-
+        document.getElementById("crazy-eights-in-game-settings"),
     crazyEightsGameSettings:
-        document.getElementById(
-            "crazy-eights-game-settings"
-        ),
-
+        document.getElementById("crazy-eights-game-settings"),
     crazyEightsHowToPlay:
-        document.getElementById(
-            "crazy-eights-how-to-play"
-        ),
-
+        document.getElementById("crazy-eights-how-to-play"),
     crazyEightsHouseRules:
-        document.getElementById(
-            "crazy-eights-house-rules"
-        )
+        document.getElementById("crazy-eights-house-rules")
 };
 
 
 /* =========================
-   Settings Route Memory
+   Navigation State
    ========================= */
 
 /*
-   Where were Crazy Eights Game Settings opened from?
+   These remember where certain settings
+   screens were opened from.
 
-   "menu" = Main Menu
-   "game" = Crazy Eights game
+   Game Settings:
+   - "menu"
+   - "game"
+
+   House Rules:
+   - "game-settings"
+   - "in-game-settings"
 */
 
 let gameSettingsOpenedFrom = "menu";
-
-
-/*
-   Where were Crazy Eights House Rules opened from?
-
-   "game-settings" = Game Settings
-   "in-game-settings" = In-Game Settings
-*/
-
 let houseRulesOpenedFrom = "game-settings";
 
 
@@ -66,20 +47,80 @@ let houseRulesOpenedFrom = "game-settings";
    Screen Display
    ========================= */
 
-function showScreen(screenToShow) {
+function showScreen(screen) {
 
-    Object.values(screens).forEach(screen => {
-        screen.classList.remove("active-screen");
+    Object.values(screens).forEach(currentScreen => {
+        currentScreen.classList.remove("active-screen");
     });
 
-    screenToShow.classList.add("active-screen");
+    screen.classList.add("active-screen");
 
     window.scrollTo(0, 0);
 }
 
 
 /* =========================
-   Navigation
+   Navigation Helpers
+   ========================= */
+
+function openGameSettings(source) {
+
+    gameSettingsOpenedFrom = source;
+
+    showScreen(
+        screens.crazyEightsGameSettings
+    );
+}
+
+
+function openHouseRules(source) {
+
+    houseRulesOpenedFrom = source;
+
+    showScreen(
+        screens.crazyEightsHouseRules
+    );
+}
+
+
+function closeGameSettings() {
+
+    if (gameSettingsOpenedFrom === "menu") {
+
+        showScreen(
+            screens.mainMenu
+        );
+
+    } else {
+
+        showScreen(
+            screens.crazyEights
+        );
+
+    }
+}
+
+
+function closeHouseRules() {
+
+    if (houseRulesOpenedFrom === "game-settings") {
+
+        showScreen(
+            screens.crazyEightsGameSettings
+        );
+
+    } else {
+
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
+
+    }
+}
+
+
+/* =========================
+   Main Navigation
    ========================= */
 
 document.addEventListener("click", event => {
@@ -92,19 +133,21 @@ document.addEventListener("click", event => {
 
 
     /* =========================
-       HOME
+       Home
        ========================= */
 
     if (button.id === "single-player-button") {
 
-        showScreen(screens.mainMenu);
+        showScreen(
+            screens.mainMenu
+        );
 
         return;
     }
 
 
     /* =========================
-       MAIN MENU
+       Main Menu
        ========================= */
 
     if (
@@ -112,7 +155,9 @@ document.addEventListener("click", event => {
         button.dataset.game === "crazy-eights"
     ) {
 
-        showScreen(screens.crazyEights);
+        showScreen(
+            screens.crazyEights
+        );
 
         return;
     }
@@ -123,18 +168,14 @@ document.addEventListener("click", event => {
         button.dataset.game === "crazy-eights"
     ) {
 
-        gameSettingsOpenedFrom = "menu";
-
-        showScreen(
-            screens.crazyEightsGameSettings
-        );
+        openGameSettings("menu");
 
         return;
     }
 
 
     /* =========================
-       CRAZY EIGHTS GAME
+       Crazy Eights Game
        ========================= */
 
     if (
@@ -164,7 +205,7 @@ document.addEventListener("click", event => {
 
 
     /* =========================
-       IN-GAME SETTINGS
+       In-Game Settings
        ========================= */
 
     if (
@@ -185,11 +226,7 @@ document.addEventListener("click", event => {
         "game-settings-button"
     ) {
 
-        gameSettingsOpenedFrom = "game";
-
-        showScreen(
-            screens.crazyEightsGameSettings
-        );
+        openGameSettings("game");
 
         return;
     }
@@ -200,32 +237,23 @@ document.addEventListener("click", event => {
         "crazy-eights-house-rules-button"
     ) {
 
-        /*
-           House Rules can only be opened
-           from either Game Settings or
-           In-Game Settings.
-
-           Check which screen is currently visible.
-        */
-
         if (
             screens.crazyEightsGameSettings
                 .classList
                 .contains("active-screen")
         ) {
 
-            houseRulesOpenedFrom =
-                "game-settings";
+            openHouseRules(
+                "game-settings"
+            );
 
         } else {
 
-            houseRulesOpenedFrom =
-                "in-game-settings";
-        }
+            openHouseRules(
+                "in-game-settings"
+            );
 
-        showScreen(
-            screens.crazyEightsHouseRules
-        );
+        }
 
         return;
     }
@@ -271,7 +299,7 @@ document.addEventListener("click", event => {
 
 
     /* =========================
-       HOW TO PLAY
+       How To Play
        ========================= */
 
     if (
@@ -288,7 +316,7 @@ document.addEventListener("click", event => {
 
 
     /* =========================
-       HOUSE RULES
+       House Rules
        ========================= */
 
     if (
@@ -296,29 +324,14 @@ document.addEventListener("click", event => {
         "crazy-eights-house-rules-close"
     ) {
 
-        if (
-            houseRulesOpenedFrom ===
-            "game-settings"
-        ) {
-
-            showScreen(
-                screens.crazyEightsGameSettings
-            );
-
-        } else {
-
-            showScreen(
-                screens.crazyEightsInGameSettings
-            );
-
-        }
+        closeHouseRules();
 
         return;
     }
 
 
     /* =========================
-       GAME SETTINGS
+       Game Settings
        ========================= */
 
     if (
@@ -326,22 +339,7 @@ document.addEventListener("click", event => {
         "crazy-eights-game-settings-close"
     ) {
 
-        if (
-            gameSettingsOpenedFrom ===
-            "menu"
-        ) {
-
-            showScreen(
-                screens.mainMenu
-            );
-
-        } else {
-
-            showScreen(
-                screens.crazyEights
-            );
-
-        }
+        closeGameSettings();
 
         return;
     }
@@ -356,9 +354,7 @@ document.addEventListener("click", event => {
 document.addEventListener("click", event => {
 
     const button =
-        event.target.closest(
-            ".choice-button"
-        );
+        event.target.closest(".choice-button");
 
     if (!button) {
         return;
@@ -393,29 +389,21 @@ document.addEventListener("click", event => {
 document.addEventListener("click", event => {
 
     const button =
-        event.target.closest(
-            ".toggle-button"
-        );
+        event.target.closest(".toggle-button");
 
     if (!button) {
         return;
     }
 
     const isOn =
-        button.getAttribute(
-            "aria-pressed"
-        ) === "true";
+        button.getAttribute("aria-pressed") === "true";
 
-    const newState =
-        !isOn;
+    const newState = !isOn;
 
     button.setAttribute(
         "aria-pressed",
         String(newState)
     );
-
-    const ruleName =
-        button.dataset.houseRule;
 
     const labels = {
 
@@ -435,6 +423,9 @@ document.addEventListener("click", event => {
             "Multiple Same Rank"
 
     };
+
+    const ruleName =
+        button.dataset.houseRule;
 
     button.setAttribute(
         "aria-label",
@@ -478,12 +469,10 @@ document
             releaseButton
         );
 
-
         button.addEventListener(
             "pointercancel",
             releaseButton
         );
-
 
         button.addEventListener(
             "pointerleave",
@@ -491,6 +480,7 @@ document
         );
 
     });
+
 
 /* =========================
    Service Worker
@@ -500,15 +490,22 @@ if ("serviceWorker" in navigator) {
 
     window.addEventListener("load", () => {
 
-        navigator.serviceWorker.register("./sw.js")
+        navigator.serviceWorker
+            .register("./sw.js")
             .then(() => {
-                console.log("Classic Cards service worker registered.");
+
+                console.log(
+                    "Classic Cards service worker registered."
+                );
+
             })
             .catch(error => {
+
                 console.error(
                     "Classic Cards service worker registration failed:",
                     error
                 );
+
             });
 
     });
