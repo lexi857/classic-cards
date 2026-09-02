@@ -4,7 +4,7 @@ console.log("Classic Cards initialized.");
 
 
 /* =========================
-   Screen Navigation
+   Screens
    ========================= */
 
 const screens = {
@@ -39,98 +39,42 @@ const screens = {
 
 
 /* =========================
-   Navigation History
+   Settings Route Memory
    ========================= */
 
 /*
-   This stores the screens we came from.
+   Where were Crazy Eights Game Settings opened from?
 
-   Example:
-
-   Main Menu
-       ↓
-   Game Settings
-       ↓
-   House Rules
-
-   House Rules → X
-       ↓
-   Game Settings
-
-   Game Settings → X
-       ↓
-   Main Menu
+   "menu" = Main Menu
+   "game" = Crazy Eights game
 */
 
-let navigationHistory = [];
+let gameSettingsOpenedFrom = "menu";
+
+
+/*
+   Where were Crazy Eights House Rules opened from?
+
+   "game-settings" = Game Settings
+   "in-game-settings" = In-Game Settings
+*/
+
+let houseRulesOpenedFrom = "game-settings";
 
 
 /* =========================
-   Show Screen
+   Screen Display
    ========================= */
 
 function showScreen(screenToShow) {
 
     Object.values(screens).forEach(screen => {
-
-        screen.classList.remove(
-            "active-screen"
-        );
-
+        screen.classList.remove("active-screen");
     });
 
-    screenToShow.classList.add(
-        "active-screen"
-    );
+    screenToShow.classList.add("active-screen");
 
     window.scrollTo(0, 0);
-}
-
-
-/* =========================
-   Navigate Forward
-   ========================= */
-
-function navigateTo(screenToShow) {
-
-    const currentScreen =
-        Object.values(screens).find(
-            screen =>
-                screen.classList.contains(
-                    "active-screen"
-                )
-        );
-
-    if (
-        currentScreen &&
-        currentScreen !== screenToShow
-    ) {
-
-        navigationHistory.push(
-            currentScreen
-        );
-
-    }
-
-    showScreen(screenToShow);
-}
-
-
-/* =========================
-   Navigate Back
-   ========================= */
-
-function navigateBack() {
-
-    const previousScreen =
-        navigationHistory.pop();
-
-    if (previousScreen) {
-
-        showScreen(previousScreen);
-
-    }
-
 }
 
 
@@ -138,365 +82,366 @@ function navigateBack() {
    Navigation
    ========================= */
 
-document.addEventListener(
-    "click",
-    event => {
+document.addEventListener("click", event => {
 
-        const button =
-            event.target.closest("button");
+    const button = event.target.closest("button");
 
-        if (!button) {
-            return;
-        }
+    if (!button) {
+        return;
+    }
 
 
-        /* =========================
-           Home → Main Menu
-           ========================= */
+    /* =========================
+       HOME
+       ========================= */
+
+    if (button.id === "single-player-button") {
+
+        showScreen(screens.mainMenu);
+
+        return;
+    }
+
+
+    /* =========================
+       MAIN MENU
+       ========================= */
+
+    if (
+        button.classList.contains("game-button") &&
+        button.dataset.game === "crazy-eights"
+    ) {
+
+        showScreen(screens.crazyEights);
+
+        return;
+    }
+
+
+    if (
+        button.classList.contains("game-settings-button") &&
+        button.dataset.game === "crazy-eights"
+    ) {
+
+        gameSettingsOpenedFrom = "menu";
+
+        showScreen(
+            screens.crazyEightsGameSettings
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       CRAZY EIGHTS GAME
+       ========================= */
+
+    if (
+        button.id ===
+        "crazy-eights-settings-button"
+    ) {
+
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
+
+        return;
+    }
+
+
+    if (
+        button.id ===
+        "crazy-eights-return-button"
+    ) {
+
+        showScreen(
+            screens.mainMenu
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       IN-GAME SETTINGS
+       ========================= */
+
+    if (
+        button.id ===
+        "how-to-play-button"
+    ) {
+
+        showScreen(
+            screens.crazyEightsHowToPlay
+        );
+
+        return;
+    }
+
+
+    if (
+        button.id ===
+        "game-settings-button"
+    ) {
+
+        gameSettingsOpenedFrom = "game";
+
+        showScreen(
+            screens.crazyEightsGameSettings
+        );
+
+        return;
+    }
+
+
+    if (
+        button.id ===
+        "crazy-eights-house-rules-button"
+    ) {
+
+        /*
+           House Rules can only be opened
+           from either Game Settings or
+           In-Game Settings.
+
+           Check which screen is currently visible.
+        */
 
         if (
-            button.id ===
-            "single-player-button"
+            screens.crazyEightsGameSettings
+                .classList
+                .contains("active-screen")
         ) {
 
-            navigationHistory = [];
+            houseRulesOpenedFrom =
+                "game-settings";
 
-            navigateTo(
-                screens.mainMenu
-            );
+        } else {
 
-            return;
+            houseRulesOpenedFrom =
+                "in-game-settings";
         }
 
+        showScreen(
+            screens.crazyEightsHouseRules
+        );
 
-        /* =========================
-           Main Menu → Crazy Eights
-           ========================= */
+        return;
+    }
+
+
+    if (
+        button.id ===
+        "return-to-menu-button"
+    ) {
+
+        showScreen(
+            screens.mainMenu
+        );
+
+        return;
+    }
+
+
+    if (
+        button.id ===
+        "return-to-home-button"
+    ) {
+
+        showScreen(
+            screens.home
+        );
+
+        return;
+    }
+
+
+    if (
+        button.id ===
+        "crazy-eights-settings-close"
+    ) {
+
+        showScreen(
+            screens.crazyEights
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       HOW TO PLAY
+       ========================= */
+
+    if (
+        button.id ===
+        "crazy-eights-how-to-play-close"
+    ) {
+
+        showScreen(
+            screens.crazyEightsInGameSettings
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       HOUSE RULES
+       ========================= */
+
+    if (
+        button.id ===
+        "crazy-eights-house-rules-close"
+    ) {
 
         if (
-            button.classList.contains(
-                "game-button"
-            ) &&
-            button.dataset.game ===
-                "crazy-eights"
+            houseRulesOpenedFrom ===
+            "game-settings"
         ) {
 
-            navigateTo(
-                screens.crazyEights
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           Main Menu → Crazy Eights
-           Game Settings
-           ========================= */
-
-        if (
-            button.classList.contains(
-                "game-settings-button"
-            ) &&
-            button.dataset.game ===
-                "crazy-eights"
-        ) {
-
-            navigateTo(
+            showScreen(
                 screens.crazyEightsGameSettings
             );
 
-            return;
-        }
+        } else {
 
-
-        /* =========================
-           Crazy Eights → In-Game Settings
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-settings-button"
-        ) {
-
-            navigateTo(
+            showScreen(
                 screens.crazyEightsInGameSettings
             );
 
-            return;
         }
 
-
-        /* =========================
-           Crazy Eights → Main Menu
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-return-button"
-        ) {
-
-            navigationHistory = [];
-
-            showScreen(
-                screens.mainMenu
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           In-Game Settings → How To Play
-           ========================= */
-
-        if (
-            button.id ===
-            "how-to-play-button"
-        ) {
-
-            navigateTo(
-                screens.crazyEightsHowToPlay
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           How To Play → Previous Screen
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-how-to-play-close"
-        ) {
-
-            navigateBack();
-
-            return;
-        }
-
-
-        /* =========================
-           In-Game Settings → House Rules
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-house-rules-button"
-        ) {
-
-            navigateTo(
-                screens.crazyEightsHouseRules
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           House Rules → Previous Screen
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-house-rules-close"
-        ) {
-
-            navigateBack();
-
-            return;
-        }
-
-
-        /* =========================
-           In-Game Settings → Previous Screen
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-settings-close"
-        ) {
-
-            navigateBack();
-
-            return;
-        }
-
-
-        /* =========================
-           In-Game Settings → Game Settings
-           ========================= */
-
-        if (
-            button.id ===
-            "game-settings-button"
-        ) {
-
-            navigateTo(
-                screens.crazyEightsGameSettings
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           In-Game Settings → Main Menu
-           ========================= */
-
-        if (
-            button.id ===
-            "return-to-menu-button"
-        ) {
-
-            navigationHistory = [];
-
-            showScreen(
-                screens.mainMenu
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           In-Game Settings → Home
-           ========================= */
-
-        if (
-            button.id ===
-            "return-to-home-button"
-        ) {
-
-            navigationHistory = [];
-
-            showScreen(
-                screens.home
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           Game Settings → Previous Screen
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-game-settings-close"
-        ) {
-
-            navigateBack();
-
-            return;
-        }
-
+        return;
     }
-);
+
+
+    /* =========================
+       GAME SETTINGS
+       ========================= */
+
+    if (
+        button.id ===
+        "crazy-eights-game-settings-close"
+    ) {
+
+        if (
+            gameSettingsOpenedFrom ===
+            "menu"
+        ) {
+
+            showScreen(
+                screens.mainMenu
+            );
+
+        } else {
+
+            showScreen(
+                screens.crazyEights
+            );
+
+        }
+
+        return;
+    }
+
+});
 
 
 /* =========================
    Choice Buttons
    ========================= */
 
-document.addEventListener(
-    "click",
-    event => {
+document.addEventListener("click", event => {
 
-        const button =
-            event.target.closest(
-                ".choice-button"
-            );
-
-        if (!button) {
-            return;
-        }
-
-        const setting =
-            button.dataset.setting;
-
-        document
-            .querySelectorAll(
-                `.choice-button[data-setting="${setting}"]`
-            )
-            .forEach(otherButton => {
-
-                otherButton.classList.remove(
-                    "selected"
-                );
-
-            });
-
-        button.classList.add(
-            "selected"
+    const button =
+        event.target.closest(
+            ".choice-button"
         );
 
+    if (!button) {
+        return;
     }
-);
+
+    const setting =
+        button.dataset.setting;
+
+    document
+        .querySelectorAll(
+            `.choice-button[data-setting="${setting}"]`
+        )
+        .forEach(otherButton => {
+
+            otherButton.classList.remove(
+                "selected"
+            );
+
+        });
+
+    button.classList.add(
+        "selected"
+    );
+
+});
 
 
 /* =========================
    House Rule Toggles
    ========================= */
 
-document.addEventListener(
-    "click",
-    event => {
+document.addEventListener("click", event => {
 
-        const button =
-            event.target.closest(
-                ".toggle-button"
-            );
-
-        if (!button) {
-            return;
-        }
-
-        const isOn =
-            button.getAttribute(
-                "aria-pressed"
-            ) === "true";
-
-        const newState =
-            !isOn;
-
-        button.setAttribute(
-            "aria-pressed",
-            String(newState)
+    const button =
+        event.target.closest(
+            ".toggle-button"
         );
 
-        const ruleName =
-            button.dataset.houseRule;
-
-        const labels = {
-
-            "ace-reverse":
-                "Ace Reverse",
-
-            "two-draw-two":
-                "Two Draw Two",
-
-            "queen-skip":
-                "Queen Skip",
-
-            "stack-draw-twos":
-                "Stack Draw Twos",
-
-            "multiple-same-rank":
-                "Multiple Same Rank"
-
-        };
-
-        button.setAttribute(
-            "aria-label",
-            `${labels[ruleName]} ${newState ? "On" : "Off"}`
-        );
-
+    if (!button) {
+        return;
     }
-);
+
+    const isOn =
+        button.getAttribute(
+            "aria-pressed"
+        ) === "true";
+
+    const newState =
+        !isOn;
+
+    button.setAttribute(
+        "aria-pressed",
+        String(newState)
+    );
+
+    const ruleName =
+        button.dataset.houseRule;
+
+    const labels = {
+
+        "ace-reverse":
+            "Ace Reverse",
+
+        "two-draw-two":
+            "Two Draw Two",
+
+        "queen-skip":
+            "Queen Skip",
+
+        "stack-draw-twos":
+            "Stack Draw Twos",
+
+        "multiple-same-rank":
+            "Multiple Same Rank"
+
+    };
+
+    button.setAttribute(
+        "aria-label",
+        `${labels[ruleName]} ${newState ? "On" : "Off"}`
+    );
+
+});
 
 
 /* =========================
