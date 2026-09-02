@@ -39,33 +39,30 @@ const screens = {
 
 
 /* =========================
-   Settings Navigation Memory
+   Navigation History
    ========================= */
 
 /*
-   Remembers where Game Settings
-   was opened from.
+   This stores the screens we came from.
 
-   Possible destinations:
-   - Main Menu
-   - Crazy Eights game
+   Example:
+
+   Main Menu
+       ↓
+   Game Settings
+       ↓
+   House Rules
+
+   House Rules → X
+       ↓
+   Game Settings
+
+   Game Settings → X
+       ↓
+   Main Menu
 */
 
-let gameSettingsReturnScreen =
-    screens.mainMenu;
-
-
-/*
-   Remembers where House Rules
-   was opened from.
-
-   Possible destinations:
-   - In-Game Settings
-   - Game Settings
-*/
-
-let houseRulesReturnScreen =
-    screens.crazyEightsGameSettings;
+let navigationHistory = [];
 
 
 /* =========================
@@ -87,6 +84,53 @@ function showScreen(screenToShow) {
     );
 
     window.scrollTo(0, 0);
+}
+
+
+/* =========================
+   Navigate Forward
+   ========================= */
+
+function navigateTo(screenToShow) {
+
+    const currentScreen =
+        Object.values(screens).find(
+            screen =>
+                screen.classList.contains(
+                    "active-screen"
+                )
+        );
+
+    if (
+        currentScreen &&
+        currentScreen !== screenToShow
+    ) {
+
+        navigationHistory.push(
+            currentScreen
+        );
+
+    }
+
+    showScreen(screenToShow);
+}
+
+
+/* =========================
+   Navigate Back
+   ========================= */
+
+function navigateBack() {
+
+    const previousScreen =
+        navigationHistory.pop();
+
+    if (previousScreen) {
+
+        showScreen(previousScreen);
+
+    }
+
 }
 
 
@@ -115,7 +159,9 @@ document.addEventListener(
             "single-player-button"
         ) {
 
-            showScreen(
+            navigationHistory = [];
+
+            navigateTo(
                 screens.mainMenu
             );
 
@@ -135,7 +181,7 @@ document.addEventListener(
                 "crazy-eights"
         ) {
 
-            showScreen(
+            navigateTo(
                 screens.crazyEights
             );
 
@@ -156,10 +202,7 @@ document.addEventListener(
                 "crazy-eights"
         ) {
 
-            gameSettingsReturnScreen =
-                screens.mainMenu;
-
-            showScreen(
+            navigateTo(
                 screens.crazyEightsGameSettings
             );
 
@@ -176,7 +219,7 @@ document.addEventListener(
             "crazy-eights-settings-button"
         ) {
 
-            showScreen(
+            navigateTo(
                 screens.crazyEightsInGameSettings
             );
 
@@ -192,6 +235,8 @@ document.addEventListener(
             button.id ===
             "crazy-eights-return-button"
         ) {
+
+            navigationHistory = [];
 
             showScreen(
                 screens.mainMenu
@@ -210,7 +255,7 @@ document.addEventListener(
             "how-to-play-button"
         ) {
 
-            showScreen(
+            navigateTo(
                 screens.crazyEightsHowToPlay
             );
 
@@ -219,7 +264,7 @@ document.addEventListener(
 
 
         /* =========================
-           How To Play → In-Game Settings
+           How To Play → Previous Screen
            ========================= */
 
         if (
@@ -227,9 +272,7 @@ document.addEventListener(
             "crazy-eights-how-to-play-close"
         ) {
 
-            showScreen(
-                screens.crazyEightsInGameSettings
-            );
+            navigateBack();
 
             return;
         }
@@ -241,47 +284,10 @@ document.addEventListener(
 
         if (
             button.id ===
-            "crazy-eights-house-rules-button" &&
-            document
-                .getElementById(
-                    "crazy-eights-in-game-settings"
-                )
-                .classList.contains(
-                    "active-screen"
-                )
+            "crazy-eights-house-rules-button"
         ) {
 
-            houseRulesReturnScreen =
-                screens.crazyEightsInGameSettings;
-
-            showScreen(
-                screens.crazyEightsHouseRules
-            );
-
-            return;
-        }
-
-
-        /* =========================
-           Game Settings → House Rules
-           ========================= */
-
-        if (
-            button.id ===
-            "crazy-eights-house-rules-button" &&
-            document
-                .getElementById(
-                    "crazy-eights-game-settings"
-                )
-                .classList.contains(
-                    "active-screen"
-                )
-        ) {
-
-            houseRulesReturnScreen =
-                screens.crazyEightsGameSettings;
-
-            showScreen(
+            navigateTo(
                 screens.crazyEightsHouseRules
             );
 
@@ -298,16 +304,14 @@ document.addEventListener(
             "crazy-eights-house-rules-close"
         ) {
 
-            showScreen(
-                houseRulesReturnScreen
-            );
+            navigateBack();
 
             return;
         }
 
 
         /* =========================
-           In-Game Settings → Crazy Eights
+           In-Game Settings → Previous Screen
            ========================= */
 
         if (
@@ -315,9 +319,7 @@ document.addEventListener(
             "crazy-eights-settings-close"
         ) {
 
-            showScreen(
-                screens.crazyEights
-            );
+            navigateBack();
 
             return;
         }
@@ -332,10 +334,7 @@ document.addEventListener(
             "game-settings-button"
         ) {
 
-            gameSettingsReturnScreen =
-                screens.crazyEights;
-
-            showScreen(
+            navigateTo(
                 screens.crazyEightsGameSettings
             );
 
@@ -351,6 +350,8 @@ document.addEventListener(
             button.id ===
             "return-to-menu-button"
         ) {
+
+            navigationHistory = [];
 
             showScreen(
                 screens.mainMenu
@@ -369,6 +370,8 @@ document.addEventListener(
             "return-to-home-button"
         ) {
 
+            navigationHistory = [];
+
             showScreen(
                 screens.home
             );
@@ -386,9 +389,7 @@ document.addEventListener(
             "crazy-eights-game-settings-close"
         ) {
 
-            showScreen(
-                gameSettingsReturnScreen
-            );
+            navigateBack();
 
             return;
         }
