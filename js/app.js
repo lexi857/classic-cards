@@ -491,3 +491,26 @@ document
         );
 
     });
+
+/* =========================
+   Service Worker
+   ========================= */
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker.register("./sw.js")
+            .then(() => {
+                console.log("Classic Cards service worker registered.");
+            })
+            .catch(error => {
+                console.error(
+                    "Classic Cards service worker registration failed:",
+                    error
+                );
+            });
+
+    });
+
+}
