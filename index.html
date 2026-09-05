@@ -2,855 +2,282 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <meta
-        name="theme-color"
-        content="#0b5d1e"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0b5d1e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Classic Cards</title>
 
-    <link
-        rel="manifest"
-        href="manifest.json"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/style.css?v=6"
-    >
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./css/style.css?v=7">
 </head>
 
 <body>
 
-    <main id="app">
+    <!-- HOME -->
+    <section id="home-screen" class="screen home-screen active-screen">
+        <div class="home-content">
+            <h1>Classic Cards</h1>
 
-        <!-- Home Screen -->
-        <section
-            id="home-screen"
-            class="screen home-screen active-screen"
-        >
-
-            <div class="home-top">
-
-                <h1>Classic Cards</h1>
-
-                <div
-                    class="logo"
-                    aria-label="Classic Cards logo"
-                >
-                    <span class="black-suit">♠</span>
-                    <span class="red-suit">♥</span>
-                    <span class="black-suit">♣</span>
-                    <span class="red-suit">♦</span>
-                </div>
-
+            <div class="home-logo" aria-label="Classic Cards logo">
+                <span>♠</span>
+                <span>♥</span>
+                <span>♣</span>
+                <span>♦</span>
             </div>
 
             <div class="home-buttons">
+                <button id="single-player-btn" class="gold-button">Single Player</button>
+                <button id="multiplayer-btn" class="gold-button">Multiplayer</button>
+                <button id="tour-btn" class="gold-button">Classic Cards Tour</button>
+            </div>
+        </div>
+    </section>
 
-                <button
-                    type="button"
-                    id="single-player-button"
-                >
-                    Single Player
-                </button>
 
-                <button
-                    type="button"
-                    id="multiplayer-button"
-                >
-                    Multiplayer
-                </button>
+    <!-- MAIN MENU -->
+    <section id="main-menu-screen" class="screen main-menu-screen">
+        <header class="app-header">
+            <h1>Classic Cards</h1>
+            <button id="app-settings-btn" class="icon-button" aria-label="App Settings">⚙</button>
+        </header>
 
-                <button
-                    type="button"
-                    id="tour-button"
-                >
-                    Classic Cards Tour
-                </button>
+        <main class="game-list">
+            <button class="game-button" data-game="crazy-eights">Crazy Eights</button>
+            <button class="game-settings-button" data-game="crazy-eights" aria-label="Crazy Eights settings">⚙</button>
 
+            <button class="game-button" data-game="baccarat">Baccarat</button>
+            <button class="game-settings-button" data-game="baccarat" aria-label="Baccarat settings">⚙</button>
+
+            <button class="game-button" data-game="blackjack">Blackjack</button>
+            <button class="game-settings-button" data-game="blackjack" aria-label="Blackjack settings">⚙</button>
+
+            <button class="game-button" data-game="solitaire">Solitaire</button>
+            <button class="game-settings-button" data-game="solitaire" aria-label="Solitaire settings">⚙</button>
+
+            <button class="game-button" data-game="speed">Speed</button>
+            <button class="game-settings-button" data-game="speed" aria-label="Speed settings">⚙</button>
+
+            <button class="game-button" data-game="five-card-draw">Five Card Draw</button>
+            <button class="game-settings-button" data-game="five-card-draw" aria-label="Five Card Draw settings">⚙</button>
+
+            <button class="game-button" data-game="texas-holdem">Texas Hold’em</button>
+            <button class="game-settings-button" data-game="texas-holdem" aria-label="Texas Hold’em settings">⚙</button>
+
+            <button class="game-button" data-game="rummy">Rummy</button>
+            <button class="game-settings-button" data-game="rummy" aria-label="Rummy settings">⚙</button>
+
+            <button class="game-button" data-game="gin-rummy">Gin Rummy</button>
+            <button class="game-settings-button" data-game="gin-rummy" aria-label="Gin Rummy settings">⚙</button>
+
+            <button class="game-button" data-game="hearts">Hearts</button>
+            <button class="game-settings-button" data-game="hearts" aria-label="Hearts settings">⚙</button>
+
+            <button class="game-button" data-game="spades">Spades</button>
+            <button class="game-settings-button" data-game="spades" aria-label="Spades settings">⚙</button>
+
+            <button class="game-button" data-game="euchre">Euchre</button>
+            <button class="game-settings-button" data-game="euchre" aria-label="Euchre settings">⚙</button>
+        </main>
+    </section>
+
+
+    <!-- APP SETTINGS -->
+    <section id="app-settings-screen" class="screen settings-screen">
+        <header class="settings-header">
+            <h1>App Settings</h1>
+            <button id="close-app-settings-btn" class="icon-button" aria-label="Close">×</button>
+        </header>
+
+        <main class="settings-content">
+            <div class="setting-row">
+                <span>Music</span>
+                <button class="setting-choice selected" data-setting="music" data-value="on">Enable</button>
+                <button class="setting-choice" data-setting="music" data-value="off">Disable</button>
             </div>
 
-        </section>
-
-
-        <!-- Main Menu -->
-        <section
-            id="main-menu"
-            class="screen menu-screen"
-        >
-
-            <header class="menu-header">
-
-                <h1>Classic Cards</h1>
-
-                <button
-                    type="button"
-                    class="icon-button"
-                    id="app-settings-button"
-                    aria-label="App Settings"
-                >
-                    ⚙
-                </button>
-
-            </header>
-
-
-            <div class="game-list">
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="crazy-eights"
-                    >
-                        Crazy Eights
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="crazy-eights"
-                        aria-label="Crazy Eights Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="baccarat"
-                    >
-                        Baccarat
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="baccarat"
-                        aria-label="Baccarat Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="blackjack"
-                    >
-                        Blackjack
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="blackjack"
-                        aria-label="Blackjack Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="solitaire"
-                    >
-                        Solitaire
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="solitaire"
-                        aria-label="Solitaire Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="speed"
-                    >
-                        Speed
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="speed"
-                        aria-label="Speed Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="five-card-draw"
-                    >
-                        Five Card Draw
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="five-card-draw"
-                        aria-label="Five Card Draw Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="texas-holdem"
-                    >
-                        Texas Hold'em
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="texas-holdem"
-                        aria-label="Texas Hold'em Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="rummy"
-                    >
-                        Rummy
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="rummy"
-                        aria-label="Rummy Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="gin-rummy"
-                    >
-                        Gin Rummy
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="gin-rummy"
-                        aria-label="Gin Rummy Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="hearts"
-                    >
-                        Hearts
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="hearts"
-                        aria-label="Hearts Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="spades"
-                    >
-                        Spades
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="spades"
-                        aria-label="Spades Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
-
-                <div class="game-option">
-
-                    <button
-                        type="button"
-                        class="game-button"
-                        data-game="euchre"
-                    >
-                        Euchre
-                    </button>
-
-                    <button
-                        type="button"
-                        class="game-settings-button"
-                        data-game="euchre"
-                        aria-label="Euchre Game Settings"
-                    >
-                        ⚙
-                    </button>
-
-                </div>
-
+            <div class="setting-row">
+                <span>Sound Effects</span>
+                <button class="setting-choice selected" data-setting="sound" data-value="on">Enable</button>
+                <button class="setting-choice" data-setting="sound" data-value="off">Disable</button>
             </div>
 
-        </section>
+            <button id="settings-home-btn" class="gold-button">Return To Home</button>
+        </main>
+    </section>
 
 
-        <!-- Crazy Eights Game Screen -->
-        <section
-            id="crazy-eights-screen"
-            class="screen game-screen"
-        >
+    <!-- CRAZY EIGHTS GAME -->
+    <section id="crazy-eights-game-screen" class="screen game-screen">
 
-            <header class="game-header">
+        <header class="game-header">
+            <h1>Crazy Eights</h1>
+            <button id="crazy-eights-in-game-settings-btn" class="icon-button" aria-label="Game Settings">⚙</button>
+        </header>
 
-                <h1>Crazy Eights</h1>
+        <main class="game-table">
 
-                <button
-                    type="button"
-                    class="icon-button"
-                    id="crazy-eights-settings-button"
-                    aria-label="Crazy Eights In-Game Settings"
-                >
-                    ⚙
-                </button>
-
-            </header>
-
-
-            <div class="game-table">
-
-                <!-- Opponent -->
-                <div class="opponent-area">
-
-                    <div class="player-label">
-                        Opponent
-                    </div>
-
-                    <div
-                        id="computer-hand"
-                        class="card-row opponent-hand"
-                    ></div>
-
-                </div>
-
-
-                <!-- Center Piles -->
-                <div class="middle-area">
-
-                    <div class="pile-area">
-
-                        <div class="pile-label">
-                            Stock
-                        </div>
-
-                        <div
-                            id="stock-pile"
-                            class="card-pile"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="pile-area">
-
-                        <div class="pile-label">
-                            Discard
-                        </div>
-
-                        <div
-                            id="discard-pile"
-                            class="card-pile"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Player -->
-                <div class="player-area">
-
-                    <div class="player-label">
-                        You
-                    </div>
-
-                    <div
-                        id="player-hand"
-                        class="card-row player-hand"
-                    ></div>
-
-                </div>
-
+            <div class="opponent-area">
+                <div class="player-label">Opponent</div>
+                <div id="opponent-hand" class="card-row opponent-hand"></div>
             </div>
 
-        </section>
+            <div class="middle-area">
+                <div class="pile-area">
+                    <div class="pile-label">Stock</div>
+                    <div id="stock-pile" class="card-pile"></div>
+                </div>
 
-
-        <!-- Crazy Eights In-Game Settings -->
-        <section
-            id="crazy-eights-in-game-settings"
-            class="screen settings-screen"
-        >
-
-            <header class="settings-header">
-
-                <h1>Crazy Eights</h1>
-
-                <button
-                    type="button"
-                    class="icon-button settings-close-button"
-                    id="crazy-eights-settings-close"
-                    aria-label="Close settings"
-                >
-                    ×
-                </button>
-
-            </header>
-
-
-            <div class="settings-options">
-
-                <button
-                    type="button"
-                    id="how-to-play-button"
-                >
-                    How To Play
-                </button>
-
-                <button
-                    type="button"
-                    id="tutorial-button"
-                >
-                    Tutorial
-                </button>
-
-                <button
-                    type="button"
-                    id="game-settings-button"
-                >
-                    Game Settings
-                </button>
-
-                <button
-                    type="button"
-                    id="return-to-menu-button"
-                >
-                    Return To Menu
-                </button>
-
-                <button
-                    type="button"
-                    id="return-to-home-button"
-                >
-                    Return To Home
-                </button>
-
+                <div class="pile-area">
+                    <div class="pile-label">Discard</div>
+                    <div id="discard-pile" class="card-pile"></div>
+                </div>
             </div>
 
-        </section>
-
-
-        <!-- Crazy Eights Game Settings -->
-        <section
-            id="crazy-eights-game-settings"
-            class="screen settings-screen"
-        >
-
-            <header class="settings-header">
-
-                <h1>Game Settings</h1>
-
-                <button
-                    type="button"
-                    class="icon-button settings-close-button"
-                    id="crazy-eights-game-settings-close"
-                    aria-label="Close game settings"
-                >
-                    ×
-                </button>
-
-            </header>
-
-
-            <div class="game-settings-options">
-
-                <div class="setting-group">
-
-                    <h2>Input Method</h2>
-
-                    <div class="setting-choices">
-
-                        <button
-                            type="button"
-                            class="choice-button selected"
-                            data-setting="input-method"
-                            data-value="tap"
-                        >
-                            Tap
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-setting="input-method"
-                            data-value="drag"
-                        >
-                            Drag &amp; Drop
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div class="setting-group">
-
-                    <h2>AI Difficulty</h2>
-
-                    <div class="setting-choices">
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-setting="ai-difficulty"
-                            data-value="easy"
-                        >
-                            Easy
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice-button selected"
-                            data-setting="ai-difficulty"
-                            data-value="medium"
-                        >
-                            Medium
-                        </button>
-
-                        <button
-                            type="button"
-                            class="choice-button"
-                            data-setting="ai-difficulty"
-                            data-value="hard"
-                        >
-                            Hard
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div class="setting-group">
-
-                    <h2>House Rules</h2>
-
-                    <button
-                        type="button"
-                        class="house-rules-button"
-                        id="crazy-eights-house-rules-button"
-                    >
-                        House Rules
-                    </button>
-
-                </div>
-
+            <div class="player-area">
+                <div class="player-label">You</div>
+                <div id="player-hand" class="card-row player-hand"></div>
             </div>
 
-        </section>
+        </main>
+    </section>
 
 
-        <!-- Crazy Eights How To Play -->
-        <section
-            id="crazy-eights-how-to-play"
-            class="screen settings-screen"
-        >
+    <!-- IN-GAME SETTINGS -->
+    <section id="in-game-settings-screen" class="screen settings-screen">
+        <header class="settings-header">
+            <h1>Crazy Eights</h1>
+            <button id="close-in-game-settings-btn" class="icon-button" aria-label="Close">×</button>
+        </header>
 
-            <header class="settings-header">
-
-                <h1>How To Play</h1>
-
-                <button
-                    type="button"
-                    class="icon-button settings-close-button"
-                    id="crazy-eights-how-to-play-close"
-                    aria-label="Close How To Play"
-                >
-                    ×
-                </button>
-
-            </header>
+        <main class="settings-content">
+            <button id="how-to-play-btn" class="gold-button">How To Play</button>
+            <button id="tutorial-btn" class="gold-button">Tutorial</button>
+            <button id="game-settings-btn" class="gold-button">Game Settings</button>
+            <button id="return-to-menu-btn" class="gold-button">Return To Menu</button>
+            <button id="return-to-home-btn" class="gold-button">Return To Home</button>
+        </main>
+    </section>
 
 
-            <div class="how-to-play-content">
+    <!-- GAME SETTINGS -->
+    <section id="game-settings-screen" class="screen settings-screen">
+        <header class="settings-header">
+            <h1>Game Settings</h1>
+            <button id="close-game-settings-btn" class="icon-button" aria-label="Close">×</button>
+        </header>
 
-                <h2>
-                    Alright, here's how we're going to play.
-                </h2>
+        <main class="settings-content">
 
-                <p>
-                    We're using a standard 52-card deck. You and
-                    your opponent each start with five cards.
-                </p>
+            <h2>Input Method</h2>
 
-                <p>
-                    The rest of the deck becomes the stock. One
-                    card is turned face up to start the discard
-                    pile.
-                </p>
-
-                <p>
-                    On your turn, look at the card on top of the
-                    discard pile. You can play a card if it matches
-                    either its suit or its denomination.
-                </p>
-
-                <p>
-                    For example, if the top card is the Queen of
-                    Clubs, you can play another Queen or any Club.
-                </p>
-
-                <p>
-                    Eights are special. You can play an eight at
-                    any time, and when you do, you choose the suit
-                    that the next player has to follow.
-                </p>
-
-                <p>
-                    If you can't play, draw cards from the stock
-                    until you can make a play. If the stock runs
-                    out and you still can't play, you pass.
-                </p>
-
-                <p>
-                    You are also allowed to draw even when you
-                    already have a card you could play.
-                </p>
-
-                <p>
-                    The first player to get rid of every card in
-                    their hand wins the game.
-                </p>
-
-                <p>
-                    When you win, the cards left in your opponent's
-                    hand are worth points: eights are worth 50,
-                    face cards and tens are worth 10, aces are worth
-                    1, and the other cards are worth their face value.
-                </p>
-
-                <p>
-                    That's it. Match the suit or rank, use your
-                    eights wisely, and try to get rid of your cards
-                    before your opponent does.
-                </p>
-
+            <div class="choice-group">
+                <button class="game-choice selected" data-setting="input" data-value="tap">Tap</button>
+                <button class="game-choice" data-setting="input" data-value="drag">Drag &amp; Drop</button>
             </div>
 
-        </section>
+            <h2>AI Difficulty</h2>
 
-
-        <!-- Crazy Eights House Rules -->
-        <section
-            id="crazy-eights-house-rules"
-            class="screen settings-screen"
-        >
-
-            <header class="settings-header">
-
-                <h1>House Rules</h1>
-
-                <button
-                    type="button"
-                    class="icon-button settings-close-button"
-                    id="crazy-eights-house-rules-close"
-                    aria-label="Close House Rules"
-                >
-                    ×
-                </button>
-
-            </header>
-
-
-            <div class="house-rules-options">
-
-                <div class="house-rule">
-
-                    <span class="house-rule-name">
-                        Ace — Reverse
-                    </span>
-
-                    <button
-                        type="button"
-                        class="toggle-button"
-                        data-house-rule="ace-reverse"
-                        aria-label="Ace Reverse Off"
-                        aria-pressed="false"
-                    >
-                        <span class="toggle-knob"></span>
-                    </button>
-
-                </div>
-
-
-                <div class="house-rule">
-
-                    <span class="house-rule-name">
-                        Two — Draw Two
-                    </span>
-
-                    <button
-                        type="button"
-                        class="toggle-button"
-                        data-house-rule="two-draw-two"
-                        aria-label="Two Draw Two Off"
-                        aria-pressed="false"
-                    >
-                        <span class="toggle-knob"></span>
-                    </button>
-
-                </div>
-
-
-                <div class="house-rule">
-
-                    <span class="house-rule-name">
-                        Queen — Skip
-                    </span>
-
-                    <button
-                        type="button"
-                        class="toggle-button"
-                        data-house-rule="queen-skip"
-                        aria-label="Queen Skip Off"
-                        aria-pressed="false"
-                    >
-                        <span class="toggle-knob"></span>
-                    </button>
-
-                </div>
-
-
-                <div class="house-rule">
-
-                    <span class="house-rule-name">
-                        Stack Draw Twos
-                    </span>
-
-                    <button
-                        type="button"
-                        class="toggle-button"
-                        data-house-rule="stack-draw-twos"
-                        aria-label="Stack Draw Twos Off"
-                        aria-pressed="false"
-                    >
-                        <span class="toggle-knob"></span>
-                    </button>
-
-                </div>
-
-
-                <div class="house-rule">
-
-                    <span class="house-rule-name">
-                        Multiple Same Rank
-                    </span>
-
-                    <button
-                        type="button"
-                        class="toggle-button"
-                        data-house-rule="multiple-same-rank"
-                        aria-label="Multiple Same Rank Off"
-                        aria-pressed="false"
-                    >
-                        <span class="toggle-knob"></span>
-                    </button>
-
-                </div>
-
+            <div class="choice-group">
+                <button class="game-choice selected" data-setting="difficulty" data-value="easy">Easy</button>
+                <button class="game-choice" data-setting="difficulty" data-value="medium">Medium</button>
+                <button class="game-choice" data-setting="difficulty" data-value="hard">Hard</button>
             </div>
 
-        </section>
+            <button id="house-rules-btn" class="gold-button">House Rules</button>
+        </main>
+    </section>
 
-    </main>
+
+    <!-- HOW TO PLAY -->
+    <section id="how-to-play-screen" class="screen how-to-play-screen">
+        <header class="settings-header">
+            <h1>How To Play</h1>
+            <button id="close-how-to-play-btn" class="icon-button" aria-label="Close">×</button>
+        </header>
+
+        <main class="how-to-play-content">
+            <h2>Crazy Eights</h2>
+
+            <p>
+                The goal is to be the first player to get rid of all your cards.
+            </p>
+
+            <p>
+                Cards are played by matching the suit or rank of the card on top
+                of the discard pile.
+            </p>
+
+            <p>
+                An Eight is wild. When you play an Eight, choose the suit that
+                the next player must follow.
+            </p>
+
+            <p>
+                If you cannot play a card, draw from the stock until you can play,
+                or until the stock is exhausted.
+            </p>
+
+            <p>
+                You may also choose to draw even when you have a playable card.
+            </p>
+
+            <p>
+                When a player gets rid of all their cards, the round ends and
+                points are scored based on the cards remaining in the opponent's hand.
+            </p>
+        </main>
+    </section>
 
 
-    <script src="js/app.js?v=8"></script>
+    <!-- HOUSE RULES -->
+    <section id="house-rules-screen" class="screen settings-screen">
+        <header class="settings-header">
+            <h1>House Rules</h1>
+            <button id="close-house-rules-btn" class="icon-button" aria-label="Close">×</button>
+        </header>
 
+        <main class="settings-content">
+
+            <div class="house-rule-row">
+                <span>Ace — Reverse</span>
+                <button class="toggle" data-rule="ace-reverse">
+                    <span class="toggle-knob"></span>
+                </button>
+            </div>
+
+            <div class="house-rule-row">
+                <span>Two — Draw Two</span>
+                <button class="toggle" data-rule="two-draw-two">
+                    <span class="toggle-knob"></span>
+                </button>
+            </div>
+
+            <div class="house-rule-row">
+                <span>Queen — Skip</span>
+                <button class="toggle" data-rule="queen-skip">
+                    <span class="toggle-knob"></span>
+                </button>
+            </div>
+
+            <div class="house-rule-row">
+                <span>Stack Draw Twos</span>
+                <button class="toggle" data-rule="stack-draw-twos">
+                    <span class="toggle-knob"></span>
+                </button>
+            </div>
+
+            <div class="house-rule-row">
+                <span>Multiple Same Rank</span>
+                <button class="toggle" data-rule="multiple-same-rank">
+                    <span class="toggle-knob"></span>
+                </button>
+            </div>
+
+        </main>
+    </section>
+
+
+    <script src="./js/app.js?v=9"></script>
 </body>
 </html>
