@@ -99,10 +99,15 @@ const ranks = [
 ];
 
 const suitSymbols = {
+
     Hearts: "♥",
+
     Diamonds: "♦",
+
     Clubs: "♣",
+
     Spades: "♠"
+
 };
 
 
@@ -175,7 +180,7 @@ function dealCards() {
 
     const playerHand = [];
 
-    const computerHand = [];
+    const opponentHand = [];
 
     for (let i = 0; i < 5; i++) {
 
@@ -183,7 +188,7 @@ function dealCards() {
             deck.pop()
         );
 
-        computerHand.push(
+        opponentHand.push(
             deck.pop()
         );
 
@@ -196,10 +201,15 @@ function dealCards() {
     ];
 
     return {
+
         playerHand,
-        computerHand,
+
+        opponentHand,
+
         stock,
+
         discardPile
+
     };
 }
 
@@ -212,7 +222,7 @@ let currentGame = null;
 
 
 /* =========================
-   Card Display
+   Create Card Front
    ========================= */
 
 function createCardElement(card) {
@@ -223,6 +233,7 @@ function createCardElement(card) {
     cardElement.classList.add(
         "card"
     );
+
 
     if (
         card.suit === "Hearts" ||
@@ -235,40 +246,163 @@ function createCardElement(card) {
 
     }
 
-    const rankElement =
-        document.createElement("span");
 
-    rankElement.classList.add(
-        "card-rank"
+    /* Top-left corner */
+
+    const topLeft =
+        document.createElement("div");
+
+    topLeft.classList.add(
+        "card-corner",
+        "top-left"
     );
 
-    rankElement.textContent =
-        card.rank;
 
-    const suitElement =
+    const topLeftRank =
         document.createElement("span");
 
-    suitElement.classList.add(
-        "card-suit"
+    topLeftRank.classList.add(
+        "card-corner-rank"
     );
 
-    suitElement.textContent =
+    topLeftRank.textContent =
+        getRankSymbol(card.rank);
+
+
+    const topLeftSuit =
+        document.createElement("span");
+
+    topLeftSuit.classList.add(
+        "card-corner-suit"
+    );
+
+    topLeftSuit.textContent =
         suitSymbols[card.suit];
 
+
+    topLeft.appendChild(
+        topLeftRank
+    );
+
+    topLeft.appendChild(
+        topLeftSuit
+    );
+
+
+    /* Center suit */
+
+    const center =
+        document.createElement("div");
+
+    center.classList.add(
+        "card-center"
+    );
+
+    center.textContent =
+        suitSymbols[card.suit];
+
+
+    /* Bottom-right corner */
+
+    const bottomRight =
+        document.createElement("div");
+
+    bottomRight.classList.add(
+        "card-corner",
+        "bottom-right"
+    );
+
+
+    const bottomRightRank =
+        document.createElement("span");
+
+    bottomRightRank.classList.add(
+        "card-corner-rank"
+    );
+
+    bottomRightRank.textContent =
+        getRankSymbol(card.rank);
+
+
+    const bottomRightSuit =
+        document.createElement("span");
+
+    bottomRightSuit.classList.add(
+        "card-corner-suit"
+    );
+
+    bottomRightSuit.textContent =
+        suitSymbols[card.suit];
+
+
+    bottomRight.appendChild(
+        bottomRightRank
+    );
+
+    bottomRight.appendChild(
+        bottomRightSuit
+    );
+
+
     cardElement.appendChild(
-        rankElement
+        topLeft
     );
 
     cardElement.appendChild(
-        suitElement
+        center
     );
+
+    cardElement.appendChild(
+        bottomRight
+    );
+
 
     return cardElement;
 }
 
 
 /* =========================
-   Card Back Display
+   Card Rank Display
+   ========================= */
+
+function getRankSymbol(rank) {
+
+    const symbols = {
+
+        Ace: "A",
+
+        Two: "2",
+
+        Three: "3",
+
+        Four: "4",
+
+        Five: "5",
+
+        Six: "6",
+
+        Seven: "7",
+
+        Eight: "8",
+
+        Nine: "9",
+
+        Ten: "10",
+
+        Jack: "J",
+
+        Queen: "Q",
+
+        King: "K"
+
+    };
+
+    return symbols[rank];
+}
+
+
+/* =========================
+   Create Card Back
    ========================= */
 
 function createCardBackElement() {
@@ -281,18 +415,54 @@ function createCardBackElement() {
         "card-back"
     );
 
-    const mark =
-        document.createElement("span");
 
-    mark.classList.add(
-        "card-back-mark"
+    const inner =
+        document.createElement("div");
+
+    inner.classList.add(
+        "card-back-inner"
     );
 
-    mark.textContent = "♠";
+
+    const logo =
+        document.createElement("div");
+
+    logo.classList.add(
+        "card-back-logo"
+    );
+
+
+    const symbols = [
+        "♠",
+        "♥",
+        "♣",
+        "♦"
+    ];
+
+
+    symbols.forEach(symbol => {
+
+        const suit =
+            document.createElement("span");
+
+        suit.textContent =
+            symbol;
+
+        logo.appendChild(
+            suit
+        );
+
+    });
+
+
+    inner.appendChild(
+        logo
+    );
 
     cardElement.appendChild(
-        mark
+        inner
     );
+
 
     return cardElement;
 }
@@ -308,12 +478,13 @@ function renderGame() {
         return;
     }
 
+
     const playerHand =
         document.getElementById(
             "player-hand"
         );
 
-    const computerHand =
+    const opponentHand =
         document.getElementById(
             "computer-hand"
         );
@@ -329,18 +500,18 @@ function renderGame() {
         );
 
 
-    /* Clear previous cards */
+    /* Clear existing cards */
 
     playerHand.innerHTML = "";
 
-    computerHand.innerHTML = "";
+    opponentHand.innerHTML = "";
 
     stockPile.innerHTML = "";
 
     discardPile.innerHTML = "";
 
 
-    /* Player cards */
+    /* Player hand */
 
     currentGame.playerHand.forEach(card => {
 
@@ -351,11 +522,11 @@ function renderGame() {
     });
 
 
-    /* Computer cards */
+    /* Opponent hand */
 
-    currentGame.computerHand.forEach(() => {
+    currentGame.opponentHand.forEach(() => {
 
-        computerHand.appendChild(
+        opponentHand.appendChild(
             createCardBackElement()
         );
 
@@ -364,7 +535,9 @@ function renderGame() {
 
     /* Stock */
 
-    if (currentGame.stock.length > 0) {
+    if (
+        currentGame.stock.length > 0
+    ) {
 
         stockPile.appendChild(
             createCardBackElement()
@@ -379,6 +552,7 @@ function renderGame() {
         currentGame.discardPile[
             currentGame.discardPile.length - 1
         ];
+
 
     if (topDiscard) {
 
